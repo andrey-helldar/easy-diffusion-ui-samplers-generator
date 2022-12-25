@@ -1,0 +1,45 @@
+{
+    "name": "dragon-code/stable-diffusion-samplers-generator",
+    "description": "description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Helldar",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-json": "*",
+        "ext-imagick": "*",
+        "archtechx/enums": "^0.3.1",
+        "dragon-code/simple-dto": "^2.7",
+        "dragon-code/support": "^6.8",
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/console": "^9.45",
+        "intervention/image": "^2.7",
+        "symfony/console": "^6.2"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "StableDiffusion\\SamplersGenerator\\": "src"
+        }
+    },
+    "bin": [
+        "bin/sampler"
+    ],
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "dragon-code/codestyler": true,
+            "friendsofphp/php-cs-fixer": true
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}

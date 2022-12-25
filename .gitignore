@@ -1,0 +1,12 @@
+.idea/
+
+build/
+vendor/
+
+.env
+
+*.cache
+*.clover
+*.orig
+
+composer.lock
