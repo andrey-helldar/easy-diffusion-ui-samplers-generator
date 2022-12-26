@@ -83,7 +83,7 @@ class ImageProperties extends DataTransferObject
         return Arr::of([
             'prompt' => $this->originalPrompt,
             'negative_prompt' => $this->negativePrompt,
-            'modifiers' => $this->activeTags,
+            'tags' => $this->activeTags,
             'model' => $this->useStableDiffusionModel,
             'vae' => $this->useVaeModel,
             'sampler' => $this->sampler,
