@@ -1,11 +1,35 @@
 {
-    "name": "dragon-code/stable-diffusion-samplers-generator",
-    "description": "description",
+    "name": "andrey-helldar/stable-diffusion-samplers-generator",
+    "description": "Sampler generator for Stable Diffusion neural network",
     "license": "MIT",
+    "keywords": [
+        "ai",
+        "neural-networks",
+        "stable-diffusion"
+    ],
     "authors": [
         {
-            "name": "Helldar",
-            "email": "email@example.com"
+            "name": "Andrey Helldar",
+            "email": "helldar@dragon-code.pro",
+            "homepage": "https://github.com/andrey-helldar"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/TheDragonCode"
+        },
+        {
+            "type": "open_collective",
+            "url": "https://opencollective.com/dragon-code"
+        },
+        {
+            "type": "boosty",
+            "url": "https://boosty.to/dragon-code"
+        },
+        {
+            "type": "yoomoney",
+            "url": "https://yoomoney.ru/to/410012608840929"
         }
     ],
     "require": {
