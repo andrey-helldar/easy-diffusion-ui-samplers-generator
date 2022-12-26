@@ -10,6 +10,7 @@ use DragonCode\Support\Facades\Filesystem\File;
 use DragonCode\Support\Facades\Helpers\Arr;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
+use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
 use StableDiffusion\SamplersGenerator\Models\ImageProperties;
 use StableDiffusion\SamplersGenerator\Services\Images\Area;
 use StableDiffusion\SamplersGenerator\Services\Images\FromBase64;
@@ -19,11 +20,12 @@ use StableDiffusion\SamplersGenerator\Services\Images\TextBlock;
 
 class Storage
 {
-    protected int $cell = 512;
+    use HasSizes;
 
     protected string $font = __DIR__ . '/../../resources/fonts/SourceCodePro-SemiBold.ttf';
 
     public function __construct(
+        protected Config $config = new Config(),
         protected ImageManager $image = new ImageManager()
     ) {
     }
@@ -66,7 +68,7 @@ class Storage
 
     protected function insert(Image &$area, int $left, float $top, Image $data): void
     {
-        $area->insert($data, 'top-left', $left * $this->cell, (int) ($top * $this->cell));
+        $area->insert($data, 'top-left', $left * $this->getCellSize(), (int) ($top * $this->getCellSize()));
     }
 
     protected function setHeaders(Image &$image, ImageProperties $properties, array $samplers, array $steps): void

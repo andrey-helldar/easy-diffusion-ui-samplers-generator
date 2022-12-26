@@ -6,11 +6,13 @@ namespace StableDiffusion\SamplersGenerator\Commands;
 
 use DragonCode\Support\Facades\Instances\Instance;
 use StableDiffusion\SamplersGenerator\Concerns\HasOptions;
+use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
 use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
 use StableDiffusion\SamplersGenerator\Concerns\ValidateOptions;
 use StableDiffusion\SamplersGenerator\Enums\Option;
 use StableDiffusion\SamplersGenerator\Helpers\Output;
 use StableDiffusion\SamplersGenerator\Processors\Processor;
+use StableDiffusion\SamplersGenerator\Services\Config;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -19,8 +21,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 abstract class Command extends BaseCommand
 {
-    use HasSystemInfo;
     use HasOptions;
+    use HasSizes;
+    use HasSystemInfo;
     use ValidateOptions;
 
     protected InputInterface $input;
@@ -29,10 +32,13 @@ abstract class Command extends BaseCommand
 
     protected string $processor;
 
+    protected ?Config $config = null;
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->input  = $input;
         $this->output = Output::make($this->input, new SymfonyStyle($input, $output));
+        $this->config = new Config();
 
         $this->validateOptions();
         $this->info();

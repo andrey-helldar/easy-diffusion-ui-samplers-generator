@@ -13,8 +13,6 @@ class Parameters extends Base
 {
     protected ?ImageProperties $properties = null;
 
-    protected int $fontSize = 28;
-
     protected string $textAlign = 'left';
 
     protected string $textValign = 'top';
@@ -56,5 +54,10 @@ class Parameters extends Base
     protected function getY(): int
     {
         return 50;
+    }
+
+    protected function getFontSize(): int
+    {
+        return $this->config->get('sizes.font.parameters', 28);
     }
 }

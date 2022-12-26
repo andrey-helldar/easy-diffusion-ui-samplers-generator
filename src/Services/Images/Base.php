@@ -9,12 +9,13 @@ use DragonCode\Support\Concerns\Makeable;
 use Intervention\Image\AbstractFont;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
+use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
+use StableDiffusion\SamplersGenerator\Services\Config;
 
 abstract class Base
 {
+    use HasSizes;
     use Makeable;
-
-    protected int $cell = 512;
 
     protected int $columns = 1;
 
@@ -24,8 +25,6 @@ abstract class Base
 
     protected string $font = __DIR__ . '/../../../resources/fonts/SourceCodePro-SemiBold.ttf';
 
-    protected int $fontSize = 72;
-
     protected string $fontColor = '#292929';
 
     protected string $textAlign = 'center';
@@ -34,12 +33,13 @@ abstract class Base
 
     protected ?string $text = null;
 
-    abstract public function get(): Image;
-
     public function __construct(
+        protected Config       $config = new Config(),
         protected ImageManager $image = new ImageManager()
     ) {
     }
+
+    abstract public function get(): Image;
 
     public function columns(int $columns): self
     {
@@ -71,12 +71,12 @@ abstract class Base
 
     protected function getX(): int
     {
-        return (int) ($this->cell * $this->columns / 2);
+        return (int) ($this->getCellSize() * $this->columns / 2);
     }
 
     protected function getY(): int
     {
-        return (int) ($this->cell / 2);
+        return (int) ($this->getCellSize() / 2);
     }
 
     public function canvas(): Image
@@ -86,19 +86,24 @@ abstract class Base
 
     protected function getWidth(): int
     {
-        return $this->columns * $this->cell;
+        return $this->columns * $this->getCellSize();
     }
 
     protected function getHeight(): int
     {
-        return $this->rows * $this->cell;
+        return $this->rows * $this->getCellSize();
+    }
+
+    protected function getFontSize(): int
+    {
+        return $this->config->get('sizes.font.header', 72);
     }
 
     protected function font(): Closure
     {
         return fn (AbstractFont $font) => $font
             ->file($this->font)
-            ->size($this->fontSize)
+            ->size($this->getFontSize())
             ->color($this->fontColor)
             ->align($this->textAlign)
             ->valign($this->textValign);

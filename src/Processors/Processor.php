@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StableDiffusion\SamplersGenerator\Processors;
 
+use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
 use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
 use StableDiffusion\SamplersGenerator\Helpers\Output;
 use StableDiffusion\SamplersGenerator\Models\ImageProperties;
@@ -13,6 +14,7 @@ use StableDiffusion\SamplersGenerator\Services\Storage;
 
 abstract class Processor
 {
+    use HasSizes;
     use HasSystemInfo;
 
     protected bool $showPathInfo = true;

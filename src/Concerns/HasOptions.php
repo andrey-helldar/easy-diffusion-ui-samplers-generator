@@ -24,6 +24,8 @@ trait HasOptions
             'showPathInfo'            => $this->option(Option::SHOW_PATH, true),
             'useFaceCorrection'       => $this->option(Option::FIX_FACES, false),
             'useStableDiffusionModel' => $this->option(Option::MODEL),
+            'width'                   => $this->getCellSize(),
+            'height'                  => $this->getCellSize(),
         ]);
     }
 

@@ -57,6 +57,7 @@ class Settings extends Processor
     protected function createProperties(array $items, int $sessionId, string $configName): DataTransferObject|ImageProperties
     {
         return ImageProperties::fromArray($items)
+            ->setSize($this->getCellSize())
             ->setSessionId($sessionId)
             ->setConfigName($configName)
             ->setPath($this->properties->path)

@@ -19,9 +19,9 @@ class Config
         $this->load();
     }
 
-    public function get(string $key): mixed
+    public function get(string $key, mixed $default = null): mixed
     {
-        return Arr::get($this->registry, $key);
+        return Arr::get($this->registry, $key, $default);
     }
 
     protected function load(): void

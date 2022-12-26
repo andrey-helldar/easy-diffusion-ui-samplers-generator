@@ -215,6 +215,14 @@ class ImageProperties extends DataTransferObject
         return $this;
     }
 
+    public function setSize(int $size): self
+    {
+        $this->width  = $size;
+        $this->height = $size;
+
+        return $this;
+    }
+
     public function resetNumOutputs(): self
     {
         $this->numOutputs = 1;
