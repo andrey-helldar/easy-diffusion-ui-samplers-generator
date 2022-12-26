@@ -69,12 +69,14 @@ class Output
             $callback();
         }
 
-        $this->twoColumnDetail('Time', $this->now()->longAbsoluteDiffForHumans($startAt, 2));
+        $this->twoColumnDetail('Elapsed Time', $this->now()->longAbsoluteDiffForHumans($startAt, 2));
     }
 
-    public function emptyLine(): void
+    public function emptyLine(int $lines = 1): void
     {
-        $this->output->writeln('');
+        for ($i = 0; $i < $lines; $i++) {
+            $this->output->writeln('');
+        }
     }
 
     public function createProgressBar(int $max): ProgressBar

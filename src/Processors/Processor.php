@@ -15,6 +15,8 @@ abstract class Processor
 {
     use HasSystemInfo;
 
+    protected bool $showPathInfo = true;
+
     public function __construct(
         protected Output $output,
         protected ImageProperties $properties,
@@ -22,6 +24,7 @@ abstract class Processor
         protected ImageGenerator $image = new ImageGenerator(),
         protected Storage $filesystem = new Storage()
     ) {
+        $this->showPathInfo = $this->properties->showPathInfo;
     }
 
     abstract protected function run(): void;
@@ -30,20 +33,14 @@ abstract class Processor
     {
         $this->output->timed(
             fn () => $this->run(),
-            fn () => $this->finish()
+            fn () => $this->showPath()
         );
-    }
-
-    protected function finish(): void
-    {
-        $this->showPath();
     }
 
     protected function showPath(): void
     {
-        if ($this->properties->showPathInfo) {
+        if ($this->showPathInfo) {
             $this->output->twoColumnDetail('Output Path', $this->properties->path);
-            $this->output->emptyLine();
         }
     }
 

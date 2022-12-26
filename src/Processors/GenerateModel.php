@@ -38,6 +38,9 @@ class GenerateModel extends Processor
                 }
             }
         }
+
+        $bar->finish();
+        $this->output->emptyLine(2);
     }
 
     protected function generate(ImageProperties $properties): string
