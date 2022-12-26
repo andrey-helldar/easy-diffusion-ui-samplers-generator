@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Commands;
+namespace StableDiffusionUI\SamplersGenerator\Commands;
 
-use StableDiffusion\SamplersGenerator\Enums\CommandName;
-use StableDiffusion\SamplersGenerator\Enums\Option;
-use StableDiffusion\SamplersGenerator\Processors\Settings as SettingsProcessor;
+use StableDiffusionUI\SamplersGenerator\Enums\CommandName;
+use StableDiffusionUI\SamplersGenerator\Enums\Option;
+use StableDiffusionUI\SamplersGenerator\Processors\Settings as SettingsProcessor;
 use Symfony\Component\Console\Input\InputOption;
 
 class Settings extends Command

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Helpers;
+namespace StableDiffusionUI\SamplersGenerator\Helpers;
 
 use Carbon\Carbon;
 use DragonCode\Support\Concerns\Makeable;

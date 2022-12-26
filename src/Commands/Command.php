@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Commands;
+namespace StableDiffusionUI\SamplersGenerator\Commands;
 
 use DragonCode\Support\Facades\Instances\Instance;
-use StableDiffusion\SamplersGenerator\Concerns\HasOptions;
-use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
-use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
-use StableDiffusion\SamplersGenerator\Concerns\ValidateOptions;
-use StableDiffusion\SamplersGenerator\Enums\Option;
-use StableDiffusion\SamplersGenerator\Helpers\Output;
-use StableDiffusion\SamplersGenerator\Processors\Processor;
-use StableDiffusion\SamplersGenerator\Services\Config;
+use StableDiffusionUI\SamplersGenerator\Concerns\HasOptions;
+use StableDiffusionUI\SamplersGenerator\Concerns\HasSizes;
+use StableDiffusionUI\SamplersGenerator\Concerns\HasSystemInfo;
+use StableDiffusionUI\SamplersGenerator\Concerns\ValidateOptions;
+use StableDiffusionUI\SamplersGenerator\Enums\Option;
+use StableDiffusionUI\SamplersGenerator\Helpers\Output;
+use StableDiffusionUI\SamplersGenerator\Processors\Processor;
+use StableDiffusionUI\SamplersGenerator\Services\Config;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

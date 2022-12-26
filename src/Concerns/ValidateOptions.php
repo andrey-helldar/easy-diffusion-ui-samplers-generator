@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Concerns;
+namespace StableDiffusionUI\SamplersGenerator\Concerns;
 
-use StableDiffusion\SamplersGenerator\Commands\Command;
-use StableDiffusion\SamplersGenerator\Enums\Option;
-use StableDiffusion\SamplersGenerator\Exceptions\IncorrectOptionValueException;
-use StableDiffusion\SamplersGenerator\Exceptions\UnknownModelException;
+use StableDiffusionUI\SamplersGenerator\Commands\Command;
+use StableDiffusionUI\SamplersGenerator\Enums\Option;
+use StableDiffusionUI\SamplersGenerator\Exceptions\IncorrectOptionValueException;
+use StableDiffusionUI\SamplersGenerator\Exceptions\UnknownModelException;
 
 /** @mixin Command */
 trait ValidateOptions

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Exceptions;
+namespace StableDiffusionUI\SamplersGenerator\Exceptions;
 
 use RuntimeException;
 

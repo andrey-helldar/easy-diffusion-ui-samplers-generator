@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Concerns;
+namespace StableDiffusionUI\SamplersGenerator\Concerns;
 
 trait HasSizes
 {

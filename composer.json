@@ -53,7 +53,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "StableDiffusion\\SamplersGenerator\\": "src"
+            "StableDiffusionUI\\SamplersGenerator\\": "src"
         }
     },
     "bin": [

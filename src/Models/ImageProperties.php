@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Models;
+namespace StableDiffusionUI\SamplersGenerator\Models;
 
 use Carbon\Carbon;
 use DragonCode\SimpleDataTransferObject\DataTransferObject;

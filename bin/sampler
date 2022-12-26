@@ -4,9 +4,9 @@
 declare(strict_types=1);
 
 
-use StableDiffusion\SamplersGenerator\Commands\Model;
-use StableDiffusion\SamplersGenerator\Commands\Models;
-use StableDiffusion\SamplersGenerator\Commands\Settings;
+use StableDiffusionUI\SamplersGenerator\Commands\Model;
+use StableDiffusionUI\SamplersGenerator\Commands\Models;
+use StableDiffusionUI\SamplersGenerator\Commands\Settings;
 use Symfony\Component\Console\Application;
 
 if (PHP_SAPI !== 'cli' || (PHP_MAJOR_VERSION < 8 && PHP_MINOR_VERSION < 1)) {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Services;
+namespace StableDiffusionUI\SamplersGenerator\Services;
 
 use GuzzleHttp\Client;
 

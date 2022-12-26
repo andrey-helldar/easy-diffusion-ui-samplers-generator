@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Services\Images;
+namespace StableDiffusionUI\SamplersGenerator\Services\Images;
 
 use Closure;
 use DragonCode\Support\Concerns\Makeable;
 use Intervention\Image\AbstractFont;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
-use StableDiffusion\SamplersGenerator\Services\Config;
+use StableDiffusionUI\SamplersGenerator\Concerns\HasSizes;
+use StableDiffusionUI\SamplersGenerator\Services\Config;
 
 abstract class Base
 {

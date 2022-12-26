@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Enums;
+namespace StableDiffusionUI\SamplersGenerator\Enums;
 
 use ArchTech\Enums\InvokableCases;
 

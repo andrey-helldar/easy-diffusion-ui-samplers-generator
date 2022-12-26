@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Requests;
+namespace StableDiffusionUI\SamplersGenerator\Requests;
 
 use DragonCode\Support\Concerns\Makeable;
 use DragonCode\Support\Facades\Helpers\Arr;
-use StableDiffusion\SamplersGenerator\Models\Neurals;
-use StableDiffusion\SamplersGenerator\Services\Http;
+use StableDiffusionUI\SamplersGenerator\Models\Neurals;
+use StableDiffusionUI\SamplersGenerator\Services\Http;
 
 class SystemInfo
 {

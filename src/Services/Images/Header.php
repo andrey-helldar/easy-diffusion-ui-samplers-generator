@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Services\Images;
+namespace StableDiffusionUI\SamplersGenerator\Services\Images;
 
 use Intervention\Image\Image;
 

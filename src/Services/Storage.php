@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Services;
+namespace StableDiffusionUI\SamplersGenerator\Services;
 
 use Closure;
 use DragonCode\Support\Facades\Filesystem\Directory;
@@ -10,13 +10,13 @@ use DragonCode\Support\Facades\Filesystem\File;
 use DragonCode\Support\Facades\Helpers\Arr;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
-use StableDiffusion\SamplersGenerator\Models\ImageProperties;
-use StableDiffusion\SamplersGenerator\Services\Images\Area;
-use StableDiffusion\SamplersGenerator\Services\Images\FromBase64;
-use StableDiffusion\SamplersGenerator\Services\Images\Header;
-use StableDiffusion\SamplersGenerator\Services\Images\Parameters;
-use StableDiffusion\SamplersGenerator\Services\Images\TextBlock;
+use StableDiffusionUI\SamplersGenerator\Concerns\HasSizes;
+use StableDiffusionUI\SamplersGenerator\Models\ImageProperties;
+use StableDiffusionUI\SamplersGenerator\Services\Images\Area;
+use StableDiffusionUI\SamplersGenerator\Services\Images\FromBase64;
+use StableDiffusionUI\SamplersGenerator\Services\Images\Header;
+use StableDiffusionUI\SamplersGenerator\Services\Images\Parameters;
+use StableDiffusionUI\SamplersGenerator\Services\Images\TextBlock;
 
 class Storage
 {

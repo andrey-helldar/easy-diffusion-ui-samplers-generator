@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Concerns;
+namespace StableDiffusionUI\SamplersGenerator\Concerns;
 
 use DragonCode\Contracts\DataTransferObject\DataTransferObject;
-use StableDiffusion\SamplersGenerator\Commands\Command;
-use StableDiffusion\SamplersGenerator\Enums\Option;
-use StableDiffusion\SamplersGenerator\Models\ImageProperties;
+use StableDiffusionUI\SamplersGenerator\Commands\Command;
+use StableDiffusionUI\SamplersGenerator\Enums\Option;
+use StableDiffusionUI\SamplersGenerator\Models\ImageProperties;
 
 /** @mixin Command */
 trait HasOptions

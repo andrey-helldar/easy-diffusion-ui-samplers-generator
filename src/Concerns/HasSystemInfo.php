@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Concerns;
+namespace StableDiffusionUI\SamplersGenerator\Concerns;
 
-use StableDiffusion\SamplersGenerator\Models\Neurals;
-use StableDiffusion\SamplersGenerator\Requests\SystemInfo;
+use StableDiffusionUI\SamplersGenerator\Models\Neurals;
+use StableDiffusionUI\SamplersGenerator\Requests\SystemInfo;
 
 trait HasSystemInfo
 {

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Processors;
+namespace StableDiffusionUI\SamplersGenerator\Processors;
 
-use StableDiffusion\SamplersGenerator\Concerns\HasSizes;
-use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
-use StableDiffusion\SamplersGenerator\Helpers\Output;
-use StableDiffusion\SamplersGenerator\Models\ImageProperties;
-use StableDiffusion\SamplersGenerator\Services\Config;
-use StableDiffusion\SamplersGenerator\Services\ImageGenerator;
-use StableDiffusion\SamplersGenerator\Services\Storage;
+use StableDiffusionUI\SamplersGenerator\Concerns\HasSizes;
+use StableDiffusionUI\SamplersGenerator\Concerns\HasSystemInfo;
+use StableDiffusionUI\SamplersGenerator\Helpers\Output;
+use StableDiffusionUI\SamplersGenerator\Models\ImageProperties;
+use StableDiffusionUI\SamplersGenerator\Services\Config;
+use StableDiffusionUI\SamplersGenerator\Services\ImageGenerator;
+use StableDiffusionUI\SamplersGenerator\Services\Storage;
 
 abstract class Processor
 {

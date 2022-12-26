@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Commands;
+namespace StableDiffusionUI\SamplersGenerator\Commands;
 
-use StableDiffusion\SamplersGenerator\Enums\CommandName;
-use StableDiffusion\SamplersGenerator\Processors\GenerateModels;
+use StableDiffusionUI\SamplersGenerator\Enums\CommandName;
+use StableDiffusionUI\SamplersGenerator\Processors\GenerateModels;
 
 class Models extends Command
 {

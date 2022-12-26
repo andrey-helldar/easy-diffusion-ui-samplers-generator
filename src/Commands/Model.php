@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Commands;
+namespace StableDiffusionUI\SamplersGenerator\Commands;
 
-use StableDiffusion\SamplersGenerator\Enums\CommandName;
-use StableDiffusion\SamplersGenerator\Enums\Option;
-use StableDiffusion\SamplersGenerator\Processors\GenerateModel;
+use StableDiffusionUI\SamplersGenerator\Enums\CommandName;
+use StableDiffusionUI\SamplersGenerator\Enums\Option;
+use StableDiffusionUI\SamplersGenerator\Processors\GenerateModel;
 use Symfony\Component\Console\Input\InputOption;
 
 class Model extends Command

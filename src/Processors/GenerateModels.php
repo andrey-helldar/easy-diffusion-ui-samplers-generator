@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Processors;
+namespace StableDiffusionUI\SamplersGenerator\Processors;
 
 class GenerateModels extends Processor
 {

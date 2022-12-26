@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Processors;
+namespace StableDiffusionUI\SamplersGenerator\Processors;
 
 use DragonCode\Contracts\DataTransferObject\DataTransferObject;
 use DragonCode\Support\Facades\Filesystem\File;
 use DragonCode\Support\Facades\Filesystem\Path;
 use DragonCode\Support\Facades\Helpers\Arr;
 use DragonCode\Support\Facades\Helpers\Str;
-use StableDiffusion\SamplersGenerator\Exceptions\SettingsNotFoundException;
-use StableDiffusion\SamplersGenerator\Helpers\Schemas\SettingsSchema;
-use StableDiffusion\SamplersGenerator\Models\ImageProperties;
+use StableDiffusionUI\SamplersGenerator\Exceptions\SettingsNotFoundException;
+use StableDiffusionUI\SamplersGenerator\Helpers\Schemas\SettingsSchema;
+use StableDiffusionUI\SamplersGenerator\Models\ImageProperties;
 
 class Settings extends Processor
 {

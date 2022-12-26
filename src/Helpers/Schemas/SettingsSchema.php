@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Helpers\Schemas;
+namespace StableDiffusionUI\SamplersGenerator\Helpers\Schemas;
 
 use DragonCode\Support\Concerns\Makeable;
-use StableDiffusion\SamplersGenerator\Helpers\Output;
-use StableDiffusion\SamplersGenerator\Services\Validator;
+use StableDiffusionUI\SamplersGenerator\Helpers\Output;
+use StableDiffusionUI\SamplersGenerator\Services\Validator;
 use Throwable;
 
 /**

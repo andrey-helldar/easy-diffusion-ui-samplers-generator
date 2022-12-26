@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Processors;
+namespace StableDiffusionUI\SamplersGenerator\Processors;
 
 use DragonCode\Support\Facades\Helpers\Arr;
-use StableDiffusion\SamplersGenerator\Models\ImageProperties;
+use StableDiffusionUI\SamplersGenerator\Models\ImageProperties;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class GenerateModel extends Processor

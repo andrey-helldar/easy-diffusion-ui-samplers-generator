@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace StableDiffusion\SamplersGenerator\Services;
+namespace StableDiffusionUI\SamplersGenerator\Services;
 
 use DragonCode\Support\Facades\Helpers\Arr;
 use DragonCode\Support\Facades\Helpers\Boolean;
 use DragonCode\Support\Facades\Helpers\Str;
-use StableDiffusion\SamplersGenerator\Helpers\Output;
+use StableDiffusionUI\SamplersGenerator\Helpers\Output;
 
 class Validator
 {
