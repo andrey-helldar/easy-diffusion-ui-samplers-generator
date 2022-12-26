@@ -1,10 +1,12 @@
-# Stable Diffusion: Samplers Generator
+# Stable Diffusion UI: Samplers Generator
 
 ![andrey helldar SD: samplers generator](https://preview.dragon-code.pro/andrey-helldar/samplers-generator.svg)
 
 ## Installation
 
-First make sure you have [Composer](https://getcomposer.org), [PHP 8.1](https://www.php.net) or higher
+First you need to download and run [Stable Diffusion UI](https://github.com/cmdr2/stable-diffusion-ui).
+
+Next, make sure you have [Composer](https://getcomposer.org), [PHP 8.1](https://www.php.net) or higher
 and [Git](https://git-scm.com/downloads) installed on your computer.
 
 Then download this repository:
