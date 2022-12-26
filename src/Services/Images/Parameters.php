@@ -42,9 +42,9 @@ class Parameters extends Base
     protected function resolveValue(mixed $value): string
     {
         return match (gettype($value)) {
-            'array' => implode(', ', $value),
+            'array'   => implode(', ', $value),
             'boolean' => Boolean::toString($value),
-            default => (string)$value
+            default   => (string) $value
         };
     }
 

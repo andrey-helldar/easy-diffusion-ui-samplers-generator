@@ -21,11 +21,18 @@ enum Option: string
     use InvokableCases;
 
     case FIX_FACES = 'fix-faces';
+
     case MODEL = 'model';
+
     case TAGS = 'tags';
+
     case NEGATIVE_PROMPT = 'negative-prompt';
+
     case PATH = 'path';
+
     case PROMPT = 'prompt';
+
     case SEED = 'seed';
+
     case SHOW_PATH = 'show-path';
 }

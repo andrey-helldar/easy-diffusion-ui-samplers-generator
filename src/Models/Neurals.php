@@ -16,6 +16,6 @@ class Neurals extends DataTransferObject
 
     protected $map = [
         'options.stable-diffusion' => 'models',
-        'options.vae' => 'vae',
+        'options.vae'              => 'vae',
     ];
 }

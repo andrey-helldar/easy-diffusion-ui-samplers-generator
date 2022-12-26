@@ -34,6 +34,8 @@ abstract class Base
 
     protected ?string $text = null;
 
+    abstract public function get(): Image;
+
     public function __construct(
         protected ImageManager $image = new ImageManager()
     ) {
@@ -67,16 +69,14 @@ abstract class Base
         return $this;
     }
 
-    abstract public function get(): Image;
-
     protected function getX(): int
     {
-        return (int)($this->cell * $this->columns / 2);
+        return (int) ($this->cell * $this->columns / 2);
     }
 
     protected function getY(): int
     {
-        return (int)($this->cell / 2);
+        return (int) ($this->cell / 2);
     }
 
     public function canvas(): Image

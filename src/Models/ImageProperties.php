@@ -68,11 +68,11 @@ class ImageProperties extends DataTransferObject
     public ?string $device = null;
 
     protected $map = [
-        'reqBody.prompt' => 'originalPrompt',
-        'reqBody.active_tags' => 'activeTags',
-        'reqBody.guidance_scale' => 'guidanceScale',
+        'reqBody.prompt'              => 'originalPrompt',
+        'reqBody.active_tags'         => 'activeTags',
+        'reqBody.guidance_scale'      => 'guidanceScale',
         'reqBody.use_face_correction' => 'useFaceCorrection',
-        'reqBody.output_format' => 'outputFormat'
+        'reqBody.output_format'       => 'outputFormat',
     ];
 
     public function __construct(array $items = [])
@@ -92,17 +92,17 @@ class ImageProperties extends DataTransferObject
     public function toImage(): array
     {
         return Arr::of([
-            'prompt' => $this->originalPrompt,
+            'prompt'          => $this->originalPrompt,
             'negative_prompt' => $this->negativePrompt,
-            'tags' => $this->activeTags,
-            'model' => $this->useStableDiffusionModel,
-            'vae' => $this->useVaeModel,
-            'sampler' => $this->sampler,
-            'guidance_scale' => $this->guidanceScale,
+            'tags'            => $this->activeTags,
+            'model'           => $this->useStableDiffusionModel,
+            'vae'             => $this->useVaeModel,
+            'sampler'         => $this->sampler,
+            'guidance_scale'  => $this->guidanceScale,
             'face_correction' => $this->getFaceCorrection(),
-            'seed' => $this->seed,
-            'device' => $this->device,
-            'generated_at' => $this->getDate(),
+            'seed'            => $this->seed,
+            'device'          => $this->device,
+            'generated_at'    => $this->getDate(),
         ])
             ->renameKeys(fn (string $key) => Str::of($key)->title()->replace('_', ' ')->toString())
             ->toArray();
@@ -112,28 +112,28 @@ class ImageProperties extends DataTransferObject
     {
         return json_encode([
             'numOutputsTotal' => 1,
-            'seed' => $this->seed,
+            'seed'            => $this->seed,
 
-            'reqBody' => [
-                'prompt' => $this->prompt,
-                'negative_prompt' => $this->negativePrompt,
-                'active_tags' => $this->activeTags,
-                'width' => $this->width,
-                'height' => $this->height,
-                'seed' => $this->seed,
-                'num_inference_steps' => $this->numInferenceSteps,
-                'guidance_scale' => $this->guidanceScale,
-                'use_face_correction' => $this->useFaceCorrection,
-                'sampler' => $this->sampler,
+            'reqBody'         => [
+                'prompt'                     => $this->prompt,
+                'negative_prompt'            => $this->negativePrompt,
+                'active_tags'                => $this->activeTags,
+                'width'                      => $this->width,
+                'height'                     => $this->height,
+                'seed'                       => $this->seed,
+                'num_inference_steps'        => $this->numInferenceSteps,
+                'guidance_scale'             => $this->guidanceScale,
+                'use_face_correction'        => $this->useFaceCorrection,
+                'sampler'                    => $this->sampler,
                 'use_stable_diffusion_model' => $this->useStableDiffusionModel,
-                'use_vae_model' => $this->useVaeModel,
-                'use_hypernetwork_model' => '',
-                'hypernetwork_strength' => 1,
-                'num_outputs' => $this->numOutputs,
-                'stream_image_progress' => false,
-                'show_only_filtered_image' => true,
-                'output_format' => $this->outputFormat
-            ]
+                'use_vae_model'              => $this->useVaeModel,
+                'use_hypernetwork_model'     => '',
+                'hypernetwork_strength'      => 1,
+                'num_outputs'                => $this->numOutputs,
+                'stream_image_progress'      => false,
+                'show_only_filtered_image'   => true,
+                'output_format'              => $this->outputFormat,
+            ],
         ], JSON_UNESCAPED_UNICODE ^ JSON_PRETTY_PRINT);
     }
 
@@ -177,7 +177,7 @@ class ImageProperties extends DataTransferObject
 
     protected function castSeed(mixed $value): ?int
     {
-        return empty($value) ? null : (int)$value;
+        return empty($value) ? null : (int) $value;
     }
 
     protected function castOutputFormat(string $value): string
@@ -234,7 +234,7 @@ class ImageProperties extends DataTransferObject
         return $this;
     }
 
-    protected function getFaceCorrection(): string | bool
+    protected function getFaceCorrection(): string|bool
     {
         return $this->useFaceCorrection ? 'GFPGANv1.3' : false;
     }

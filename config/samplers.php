@@ -10,5 +10,5 @@ return [
     'euler',
     'euler_a',
     'dpm2',
-    'dpm2_a'
+    'dpm2_a',
 ];

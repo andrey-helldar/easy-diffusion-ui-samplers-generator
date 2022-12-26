@@ -48,6 +48,6 @@ class ImageGenerator
 
     protected function doesntSuccess(array $response): bool
     {
-        return !$this->isSuccess($response);
+        return ! $this->isSuccess($response);
     }
 }

@@ -66,7 +66,7 @@ class Storage
 
     protected function insert(Image &$area, int $left, float $top, Image $data): void
     {
-        $area->insert($data, 'top-left', $left * $this->cell, (int)($top * $this->cell));
+        $area->insert($data, 'top-left', $left * $this->cell, (int) ($top * $this->cell));
     }
 
     protected function setHeaders(Image &$image, ImageProperties $properties, array $samplers, array $steps): void
@@ -113,7 +113,7 @@ class Storage
         }
     }
 
-    protected function resolveImage(Image | string $content): Image
+    protected function resolveImage(Image|string $content): Image
     {
         return FromBase64::make()->content($content)->get();
     }

@@ -26,9 +26,9 @@ class Validator
             foreach ($rls as $rule) {
                 $value = Arr::get($data, $key);
                 $param = Str::after($rule, ':');
-                $rule = Str::before($rule, ':');
+                $rule  = Str::before($rule, ':');
 
-                if (!$this->assert($data, $key, $value, $rule, $param)) {
+                if (! $this->assert($data, $key, $value, $rule, $param)) {
                     $this->message($key, $value, $rule);
 
                     return false;
@@ -43,13 +43,13 @@ class Validator
     {
         return match ($rule) {
             'required' => $this->validateRequired($items, $key),
-            'int' => $this->validateInteger($value),
-            'array' => $this->validateArray($value),
-            'string' => $this->validateString($value),
-            'float' => $this->validateFloat($value),
-            'min' => $this->validateMin($value, (int)$param),
-            'bool' => $this->validateBoolean($value),
-            default => false
+            'int'      => $this->validateInteger($value),
+            'array'    => $this->validateArray($value),
+            'string'   => $this->validateString($value),
+            'float'    => $this->validateFloat($value),
+            'min'      => $this->validateMin($value, (int) $param),
+            'bool'     => $this->validateBoolean($value),
+            default    => false
         };
     }
 
@@ -99,8 +99,8 @@ class Validator
     {
         return match (true) {
             $this->validateNumeric($value) => $value >= $param,
-            $this->validateArray($value) => count($value) >= $param,
-            default => Str::length($value) >= $param
+            $this->validateArray($value)   => $param <= count($value),
+            default                        => $param <= Str::length($value)
         };
     }
 }

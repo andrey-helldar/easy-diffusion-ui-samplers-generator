@@ -83,7 +83,7 @@ class Output
 
     public function emptyLine(int $lines = 1): void
     {
-        for ($i = 0; $i < $lines; $i++) {
+        for ($i = 0; $i < $lines; ++$i) {
             $this->output->writeln('');
         }
     }
@@ -101,7 +101,7 @@ class Output
             return;
         }
 
-        if (!empty($fallback)) {
+        if (! empty($fallback)) {
             Call::callback($fallback);
         }
     }
@@ -120,7 +120,7 @@ class Output
 
     protected function component(): Factory
     {
-        if (!empty($this->components)) {
+        if (! empty($this->components)) {
             return $this->components;
         }
 

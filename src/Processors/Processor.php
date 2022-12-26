@@ -17,6 +17,8 @@ abstract class Processor
 
     protected bool $showPathInfo = true;
 
+    abstract protected function run(): void;
+
     public function __construct(
         protected Output $output,
         protected ImageProperties $properties,
@@ -26,8 +28,6 @@ abstract class Processor
     ) {
         $this->showPathInfo = $this->properties->showPathInfo;
     }
-
-    abstract protected function run(): void;
 
     public function handle(): void
     {
@@ -49,7 +49,7 @@ abstract class Processor
         return new $processor($this->output, $properties, $this->config, $this->image, $this->filesystem);
     }
 
-    protected function getRealPath(): string | bool
+    protected function getRealPath(): string|bool
     {
         return realpath($this->properties->path . '/' . $this->properties->getInitiatedAt());
     }

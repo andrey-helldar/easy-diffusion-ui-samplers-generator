@@ -15,7 +15,7 @@ class GenerateModel extends Processor
     protected function run(): void
     {
         $samplers = $this->samplers();
-        $steps = $this->steps();
+        $steps    = $this->steps();
 
         $bar = $this->progressBar(count($samplers), count($steps), count($this->vae()));
 
@@ -28,9 +28,9 @@ class GenerateModel extends Processor
         foreach ($this->vae() as $vae) {
             foreach ($samplers as $sampler) {
                 foreach ($steps as $step) {
-                    $properties->sampler = $sampler;
+                    $properties->sampler           = $sampler;
                     $properties->numInferenceSteps = $step;
-                    $properties->useVaeModel = $vae;
+                    $properties->useVaeModel       = $vae;
 
                     $this->collection[$sampler][$step] = $this->generate($properties);
 

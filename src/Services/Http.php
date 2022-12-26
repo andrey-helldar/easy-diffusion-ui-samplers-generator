@@ -28,7 +28,7 @@ class Http
     protected function request(string $method, string $uri, array $data = []): array
     {
         $response = $this->client->request($method, $this->url($uri), [
-            'json' => $data
+            'json' => $data,
         ]);
 
         return json_decode($response->getBody()->getContents(), true) ?: [];

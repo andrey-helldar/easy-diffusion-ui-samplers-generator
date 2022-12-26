@@ -53,7 +53,7 @@ class Settings extends Processor
         return SettingsSchema::make($this->output)->isValid($filename);
     }
 
-    protected function createProperties(array $items, int $sessionId): DataTransferObject | ImageProperties
+    protected function createProperties(array $items, int $sessionId): DataTransferObject|ImageProperties
     {
         return ImageProperties::fromArray($items)
             ->setSessionId($sessionId)

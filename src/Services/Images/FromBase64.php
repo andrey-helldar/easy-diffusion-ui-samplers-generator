@@ -10,7 +10,7 @@ class FromBase64 extends Base
 {
     protected Image|string|null $content;
 
-    public function content(Image | string $content): self
+    public function content(Image|string $content): self
     {
         $this->content = $content;
 

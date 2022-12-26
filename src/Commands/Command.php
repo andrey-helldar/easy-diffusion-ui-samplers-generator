@@ -31,7 +31,7 @@ abstract class Command extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->input = $input;
+        $this->input  = $input;
         $this->output = Output::make($this->input, new SymfonyStyle($input, $output));
 
         $this->validateOptions();
@@ -100,7 +100,7 @@ abstract class Command extends BaseCommand
         return new $this->processor($this->output, $this->getOptions());
     }
 
-    protected function getClassBasename(object | string $class): string
+    protected function getClassBasename(object|string $class): string
     {
         return Instance::basename($class);
     }

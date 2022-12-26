@@ -29,7 +29,7 @@ trait ValidateOptions
 
     protected function validateModel(string $model, array $models): void
     {
-        if (!in_array($model, $models)) {
+        if (! in_array($model, $models)) {
             throw new UnknownModelException($model, $models);
         }
     }

@@ -15,11 +15,11 @@ class Header extends Base
 
     protected function getHeight(): int
     {
-        return (int)(parent::getHeight() / 2);
+        return (int) (parent::getHeight() / 2);
     }
 
     protected function getY(): int
     {
-        return (int)(parent::getY() / 2);
+        return (int) (parent::getY() / 2);
     }
 }
