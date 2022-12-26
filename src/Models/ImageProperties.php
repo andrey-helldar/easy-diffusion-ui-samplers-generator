@@ -127,6 +127,11 @@ class ImageProperties extends DataTransferObject
             ->toArray();
     }
 
+    protected function castSeed(mixed $value): ?int
+    {
+        return empty($value) ? null : (int)$value;
+    }
+
     protected function setSessionId(): void
     {
         $this->sessionId = time();
