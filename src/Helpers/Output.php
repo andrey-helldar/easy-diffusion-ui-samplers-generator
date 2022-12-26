@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StableDiffusion\SamplersGenerator\Helpers;
 
+use Carbon\Carbon;
 use DragonCode\Support\Concerns\Makeable;
 use DragonCode\Support\Facades\Instances\Call;
 use Illuminate\Console\OutputStyle;
@@ -60,6 +61,17 @@ class Output
         );
     }
 
+    public function timed(callable ...$callbacks): void
+    {
+        $startAt = $this->now();
+
+        foreach ($callbacks as $callback) {
+            $callback();
+        }
+
+        $this->twoColumnDetail('Time', $this->now()->longAbsoluteDiffForHumans($startAt, 2));
+    }
+
     public function emptyLine(): void
     {
         $this->output->writeln('');
@@ -107,5 +119,10 @@ class Output
     protected function illuminateOutput(): OutputStyle
     {
         return new OutputStyle($this->input, $this->output);
+    }
+
+    protected function now(): Carbon
+    {
+        return Carbon::now();
     }
 }

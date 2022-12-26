@@ -18,6 +18,7 @@
         "guzzlehttp/guzzle": "^7.5",
         "illuminate/console": "^9.45",
         "intervention/image": "^2.7",
+        "nesbot/carbon": "^2.64",
         "symfony/console": "^6.2"
     },
     "require-dev": {

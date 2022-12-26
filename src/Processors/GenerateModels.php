@@ -6,7 +6,7 @@ namespace StableDiffusion\SamplersGenerator\Processors;
 
 class GenerateModels extends Processor
 {
-    public function handle(): void
+    protected function run(): void
     {
         $items = $this->models();
 

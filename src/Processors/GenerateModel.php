@@ -12,7 +12,7 @@ class GenerateModel extends Processor
 {
     protected array $collection = [];
 
-    public function handle(): void
+    protected function run(): void
     {
         $samplers = $this->samplers();
         $steps = $this->steps();

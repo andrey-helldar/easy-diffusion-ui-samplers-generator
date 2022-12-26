@@ -22,12 +22,24 @@ abstract class Processor
         protected ImageGenerator $image = new ImageGenerator(),
         protected Storage $filesystem = new Storage()
     ) {
-        $this->resolvePath();
     }
 
-    abstract public function handle(): void;
+    abstract protected function run(): void;
 
-    protected function resolvePath(): void
+    public function handle(): void
+    {
+        $this->output->timed(
+            fn () => $this->run(),
+            fn () => $this->finish()
+        );
+    }
+
+    protected function finish(): void
+    {
+        $this->showPath();
+    }
+
+    protected function showPath(): void
     {
         if ($this->properties->showPathInfo) {
             $this->output->twoColumnDetail('Output Path', $this->properties->path);
