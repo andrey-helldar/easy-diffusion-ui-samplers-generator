@@ -89,6 +89,7 @@ class ImageProperties extends DataTransferObject
             'steps' => $this->numInferenceSteps,
             'guidance_scale' => $this->guidanceScale,
             'face_correction' => $this->getFaceCorrection(),
+            'seed' => $this->seed,
             'device' => $this->device,
             'date' => $this->getDate(),
         ];
