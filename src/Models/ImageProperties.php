@@ -7,6 +7,7 @@ namespace StableDiffusion\SamplersGenerator\Models;
 use DragonCode\SimpleDataTransferObject\DataTransferObject;
 use DragonCode\Support\Facades\Filesystem\Directory;
 use DragonCode\Support\Facades\Helpers\Arr;
+use DragonCode\Support\Facades\Helpers\Boolean;
 use DragonCode\Support\Facades\Helpers\Str;
 
 class ImageProperties extends DataTransferObject
@@ -128,6 +129,11 @@ class ImageProperties extends DataTransferObject
             ->sort()
             ->values()
             ->toArray();
+    }
+
+    protected function castUseFaceCorrection(mixed $value): bool
+    {
+        return Boolean::to($value);
     }
 
     protected function castSeed(mixed $value): ?int

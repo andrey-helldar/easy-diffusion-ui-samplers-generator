@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace StableDiffusion\SamplersGenerator\Commands;
 
 use DragonCode\Support\Facades\Instances\Instance;
-use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
 use StableDiffusion\SamplersGenerator\Concerns\HasOptions;
+use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
 use StableDiffusion\SamplersGenerator\Concerns\ValidateOptions;
 use StableDiffusion\SamplersGenerator\Enums\Option;
 use StableDiffusion\SamplersGenerator\Helpers\Output;
@@ -40,7 +40,6 @@ abstract class Command extends BaseCommand
         return 0;
     }
 
-
     protected function configure(): Command
     {
         return $this
@@ -65,9 +64,8 @@ abstract class Command extends BaseCommand
             ->addOption(
                 Option::FIX_FACES(),
                 null,
-                InputOption::VALUE_OPTIONAL,
-                'Enable fix incorrect faces and eyes via GFPGANv1.3.',
-                false
+                InputOption::VALUE_NONE,
+                'Enable fix incorrect faces and eyes via GFPGANv1.3.'
             )
             ->addOption(
                 Option::PATH(),
