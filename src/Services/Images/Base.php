@@ -33,13 +33,13 @@ abstract class Base
 
     protected ?string $text = null;
 
+    abstract public function get(): Image;
+
     public function __construct(
-        protected Config       $config = new Config(),
+        protected Config $config = new Config(),
         protected ImageManager $image = new ImageManager()
     ) {
     }
-
-    abstract public function get(): Image;
 
     public function columns(int $columns): self
     {
