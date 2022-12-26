@@ -9,7 +9,13 @@ First you need to download and run [Stable Diffusion UI](https://github.com/cmdr
 Next, make sure you have [Composer](https://getcomposer.org), [PHP 8.1](https://www.php.net) or higher
 and [Git](https://git-scm.com/downloads) installed on your computer.
 
-Then download this repository:
+Next, you may create a new `Samplers Generator` project via the Composer `create-project` command:
+
+```bash
+composer create-project andrey-helldar/stable-diffusion-ui-samplers-generator stable-diffusion-ui-samplers-generator
+```
+
+Or you can download this repository:
 
 ```bash
 git clone git@github.com:andrey-helldar/stable-diffusion-ui-samplers-generator.git
@@ -18,7 +24,7 @@ git clone git@github.com:andrey-helldar/stable-diffusion-ui-samplers-generator.g
 Next, go to the project folder and install the dependencies:
 
 ```bash
-cd ./stable-diffusion-samplers-generator
+cd ./stable-diffusion-ui-samplers-generator
 
 composer install
 ```
