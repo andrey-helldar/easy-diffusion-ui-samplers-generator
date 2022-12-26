@@ -112,6 +112,8 @@ class ImageProperties extends DataTransferObject
 
     protected function castPath(string $value): string
     {
+        $value .= date('/Y-m-d-H-i-s');
+        
         Directory::ensureDirectory($value);
 
         return realpath($value);
