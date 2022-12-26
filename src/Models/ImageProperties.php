@@ -116,6 +116,17 @@ class ImageProperties extends DataTransferObject
         return realpath($value);
     }
 
+    protected function castActiveTags(array $values): array
+    {
+        return Arr::of($values)
+            ->filter()
+            ->map(fn (string $value) => trim($value))
+            ->unique()
+            ->sort()
+            ->values()
+            ->toArray();
+    }
+
     protected function setSessionId(): void
     {
         $this->sessionId = time();
