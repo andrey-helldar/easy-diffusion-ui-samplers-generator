@@ -27,7 +27,11 @@ trait HasOptions
 
     protected function option(Option $option, mixed $default = null): mixed
     {
-        return $this->input->getOption($option->value) ?: $default;
+        if ($this->input->hasOption($option->value)) {
+            return $this->input->getOption($option->value) ?: $default;
+        }
+
+        return $default;
     }
 
     protected function generateSeed(): int
