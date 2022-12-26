@@ -87,7 +87,6 @@ class ImageProperties extends DataTransferObject
             'model' => $this->useStableDiffusionModel,
             'vae' => $this->useVaeModel,
             'sampler' => $this->sampler,
-            'steps' => $this->numInferenceSteps,
             'guidance_scale' => $this->guidanceScale,
             'face_correction' => $this->getFaceCorrection(),
             'seed' => $this->seed,
