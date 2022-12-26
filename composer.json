@@ -1,11 +1,12 @@
 {
-    "name": "andrey-helldar/stable-diffusion-samplers-generator",
-    "description": "Sampler generator for Stable Diffusion neural network",
+    "name": "andrey-helldar/stable-diffusion-ui-samplers-generator",
+    "description": "Sampler generator for Stable Diffusion UI",
     "license": "MIT",
     "keywords": [
         "ai",
         "neural-networks",
-        "stable-diffusion"
+        "stable-diffusion",
+        "stable-diffusion-ui"
     ],
     "authors": [
         {
