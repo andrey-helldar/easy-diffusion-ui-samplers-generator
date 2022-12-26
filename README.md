@@ -12,7 +12,7 @@ and [Git](https://git-scm.com/downloads) installed on your computer.
 Then download this repository:
 
 ```bash
-git clone git@github.com:andrey-helldar/stable-diffusion-samplers-generator.git
+git clone git@github.com:andrey-helldar/stable-diffusion-ui-samplers-generator.git
 ```
 
 Next, go to the project folder and install the dependencies:
