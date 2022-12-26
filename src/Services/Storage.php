@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace StableDiffusion\SamplersGenerator\Services;
 
 use Closure;
+use DragonCode\Support\Facades\Filesystem\File;
 use DragonCode\Support\Facades\Helpers\Arr;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
@@ -37,7 +38,18 @@ class Storage
         $this->setHeaders($image, $properties, $samplers, $steps);
         $this->process($image, $collection);
 
-        $image->save($this->getPath($properties->path, $properties));
+        $this->storeImage($image, $this->getPath($properties->path, $properties, 'png'));
+        $this->storeParameters($properties, $this->getPath($properties->path, $properties, 'json'));
+    }
+
+    protected function storeImage(Image $image, string $path): void
+    {
+        $image->save($path);
+    }
+
+    protected function storeParameters(ImageProperties $properties, string $path): void
+    {
+        File::store($path, $properties->toJson(JSON_UNESCAPED_UNICODE ^ JSON_PRETTY_PRINT));
     }
 
     protected function process(Image &$image, array $collection): void
@@ -119,8 +131,8 @@ class Storage
             ->get();
     }
 
-    protected function getPath(string $directory, ImageProperties $properties): string
+    protected function getPath(string $directory, ImageProperties $properties, string $extension): string
     {
-        return $directory . '/' . $properties->useStableDiffusionModel . '__' . $properties->useVaeModel . '.png';
+        return $directory . '/' . $properties->useStableDiffusionModel . '__' . $properties->useVaeModel . '.' . $extension;
     }
 }
