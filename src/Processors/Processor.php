@@ -39,9 +39,7 @@ abstract class Processor
 
     protected function showPath(): void
     {
-        if ($this->showPathInfo) {
-            $path = realpath($this->properties->path . '/' . $this->properties->getInitiatedAt());
-
+        if ($this->showPathInfo && $path = $this->getRealPath()) {
             $this->output->twoColumnDetail('Output Path', $path);
         }
     }
@@ -49,5 +47,10 @@ abstract class Processor
     protected function resolveProcessor(string $processor, ImageProperties $properties): self
     {
         return new $processor($this->output, $properties, $this->config, $this->image, $this->filesystem);
+    }
+
+    protected function getRealPath(): string | bool
+    {
+        return realpath($this->properties->path . '/' . $this->properties->getInitiatedAt());
     }
 }

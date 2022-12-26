@@ -6,17 +6,17 @@ namespace StableDiffusion\SamplersGenerator\Commands;
 
 use StableDiffusion\SamplersGenerator\Enums\CommandName;
 use StableDiffusion\SamplersGenerator\Enums\Option;
-use StableDiffusion\SamplersGenerator\Processors\ConfigFiles;
+use StableDiffusion\SamplersGenerator\Processors\Settings as SettingsProcessor;
 use Symfony\Component\Console\Input\InputOption;
 
-class Config extends Command
+class Settings extends Command
 {
-    protected string $processor = ConfigFiles::class;
+    protected string $processor = SettingsProcessor::class;
 
     protected function configure(): Command
     {
         return $this
-            ->setName(CommandName::MODELS())
+            ->setName(CommandName::SETTINGS())
             ->setDescription('Sampler generation from saved Stable Diffusion configuration files.')
             ->addOption(
                 Option::PATH(),

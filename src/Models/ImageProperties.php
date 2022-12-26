@@ -10,6 +10,9 @@ use DragonCode\Support\Facades\Helpers\Arr;
 use DragonCode\Support\Facades\Helpers\Boolean;
 use DragonCode\Support\Facades\Helpers\Str;
 
+/**
+ * @method ImageProperties fromArray(array $items)
+ */
 class ImageProperties extends DataTransferObject
 {
     public array $activeTags = [];
@@ -63,6 +66,14 @@ class ImageProperties extends DataTransferObject
     public bool $showPathInfo = true;
 
     public ?string $device = null;
+
+    protected $map = [
+        'reqBody.prompt' => 'originalPrompt',
+        'reqBody.active_tags' => 'activeTags',
+        'reqBody.guidance_scale' => 'guidanceScale',
+        'reqBody.use_face_correction' => 'useFaceCorrection',
+        'reqBody.output_format' => 'outputFormat'
+    ];
 
     public function __construct(array $items = [])
     {
@@ -169,9 +180,58 @@ class ImageProperties extends DataTransferObject
         return empty($value) ? null : (int)$value;
     }
 
-    protected function setSessionId(): void
+    protected function castOutputFormat(string $value): string
     {
-        $this->sessionId = time();
+        return Str::of($value)->lower()->contains(['jpg', 'jpeg']) ? 'jpeg' : 'png';
+    }
+
+    public function setSessionId(?int $timestamp = null): self
+    {
+        $this->sessionId = $timestamp ?: time();
+
+        return $this;
+    }
+
+    public function setPath(string $path): self
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    public function setDevice(string $device): self
+    {
+        $this->device = $device;
+
+        return $this;
+    }
+
+    public function resetNumOutputs(): self
+    {
+        $this->numOutputs = 1;
+
+        return $this;
+    }
+
+    public function resetShowOnlyFilteredImage(): self
+    {
+        $this->showOnlyFilteredImage = true;
+
+        return $this;
+    }
+
+    public function resetStreamImageProgress(): self
+    {
+        $this->streamImageProgress = false;
+
+        return $this;
+    }
+
+    public function resetStreamProgressUpdates(): self
+    {
+        $this->streamProgressUpdates = true;
+
+        return $this;
     }
 
     protected function getFaceCorrection(): string | bool

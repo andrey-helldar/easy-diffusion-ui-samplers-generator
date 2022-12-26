@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 use StableDiffusion\SamplersGenerator\Commands\Model;
 use StableDiffusion\SamplersGenerator\Commands\Models;
+use StableDiffusion\SamplersGenerator\Commands\Settings;
 use Symfony\Component\Console\Application;
 
 if (PHP_SAPI !== 'cli' || (PHP_MAJOR_VERSION < 8 && PHP_MINOR_VERSION < 1)) {
@@ -37,9 +38,10 @@ if (is_null($file)) {
 
 require_once $file;
 
-$application = new Application('Stable Diffusion Samplers Generator');
+$application = new Application('Stable Diffusion: Samplers Generator');
 
 $application->add(new Model());
 $application->add(new Models());
+$application->add(new Settings());
 
 $application->run();

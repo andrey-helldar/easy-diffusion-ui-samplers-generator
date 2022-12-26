@@ -29,6 +29,11 @@ class SystemInfo
     {
         $response = $this->http->get('/get/system_info');
 
-        return Arr::get($response, 'devices.active.cuda:0.name');
+        $devices = Arr::get($response, 'devices.active', []);
+
+        return Arr::of($devices)
+            ->map(fn (array $device) => $device['name'])
+            ->implode(', ')
+            ->toString();
     }
 }
