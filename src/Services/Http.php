@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace StableDiffusion\SamplersGenerator\Services;
 
 use GuzzleHttp\Client;
+use Lmc\HttpConstants\Header;
 
 class Http
 {
@@ -28,6 +29,7 @@ class Http
     protected function request(string $method, string $uri, array $data = []): array
     {
         $response = $this->client->request($method, $this->url($uri), [
+            'headers' => $this->headers(),
             'json' => $data
         ]);
 
@@ -37,5 +39,13 @@ class Http
     protected function url(string $uri): string
     {
         return $this->host . '/' . ltrim($uri, '/');
+    }
+
+    protected function headers(): array
+    {
+        return [
+            Header::ACCEPT => 'application/json',
+            Header::CONTENT_TYPE => 'application/json'
+        ];
     }
 }
