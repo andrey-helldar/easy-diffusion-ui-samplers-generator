@@ -58,6 +58,8 @@ class ImageProperties extends DataTransferObject
     public int $width = 512;
 
     public string $path = '';
+    
+    public bool $showPathInfo = true;
 
     public function __construct(array $items = [])
     {

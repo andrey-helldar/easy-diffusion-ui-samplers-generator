@@ -41,6 +41,15 @@ class Output
         $this->output->writeln($message);
     }
 
+    public function twoColumnDetail(string $first, string $second): void
+    {
+        $this->when(
+            $this->hasComponent(),
+            fn () => $this->component()->twoColumnDetail($first, $second),
+            fn () => $this->line($first . ': ' . $second)
+        );
+    }
+
     public function task(string $message, callable $callback): void
     {
         $this->when(

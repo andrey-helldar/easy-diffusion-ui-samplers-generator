@@ -25,6 +25,7 @@ class GenerateModels extends Processor
     protected function process(string $model): void
     {
         $this->properties->useStableDiffusionModel = $model;
+        $this->properties->showPathInfo = false;
 
         $this->resolveProcessor(GenerateModel::class, $this->properties)->handle();
     }

@@ -23,6 +23,13 @@ class Model extends Command
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Model for generating samples.'
+            )
+            ->addOption(
+                Option::SHOW_PATH(),
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Determines whether to display the path to the save folder on the screen.',
+                true
             );
     }
 }

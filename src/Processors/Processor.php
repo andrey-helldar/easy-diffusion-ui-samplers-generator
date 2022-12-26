@@ -29,8 +29,10 @@ abstract class Processor
 
     protected function resolvePath(): void
     {
-        $this->output->line('Output Path: ' . $this->properties->path);
-        $this->output->emptyLine();
+        if ($this->properties->showPathInfo) {
+            $this->output->twoColumnDetail('Output Path', $this->properties->path);
+            $this->output->emptyLine();
+        }
     }
 
     protected function resolveProcessor(string $processor, ImageProperties $properties): self

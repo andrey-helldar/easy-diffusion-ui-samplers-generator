@@ -14,6 +14,7 @@ use ArchTech\Enums\InvokableCases;
  * @method static string PATH()
  * @method static string PROMPT()
  * @method static string SEED()
+ * @method static string SHOW_PATH()
  */
 enum Option: string
 {
@@ -26,4 +27,5 @@ enum Option: string
     case PATH = 'path';
     case PROMPT = 'prompt';
     case SEED = 'seed';
+    case SHOW_PATH = 'show-path';
 }

@@ -22,6 +22,7 @@ trait HasOptions
             'seed' => $this->option(Option::SEED, $this->generateSeed()),
             'useFaceCorrection' => $this->option(Option::FIX_FACES, false),
             'useStableDiffusionModel' => $this->option(Option::MODEL),
+            'showPathInfo' => $this->option(Option::SHOW_PATH, true)
         ]);
     }
 

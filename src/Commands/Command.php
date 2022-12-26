@@ -66,13 +66,15 @@ abstract class Command extends BaseCommand
                 Option::FIX_FACES(),
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'Enable fix incorrect faces and eyes via GFPGANv1.3.'
+                'Enable fix incorrect faces and eyes via GFPGANv1.3.',
+                false
             )
             ->addOption(
                 Option::PATH(),
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'Path to save the generated samples. By default, in the "build" subfolder inside the current directory.'
+                'Path to save the generated samples. By default, in the "build" subfolder inside the current directory.',
+                './build'
             )
             ->addOption(
                 Option::SEED(),
