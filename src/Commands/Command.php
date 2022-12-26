@@ -57,7 +57,7 @@ abstract class Command extends BaseCommand
                 'Exclusion words for query generation.'
             )
             ->addOption(
-                Option::MODIFIERS(),
+                Option::TAGS(),
                 null,
                 InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY,
                 'Image generation modifiers.'

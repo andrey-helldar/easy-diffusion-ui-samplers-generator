@@ -15,7 +15,7 @@ trait HasOptions
     protected function getOptions(): DataTransferObject | ImageProperties
     {
         return ImageProperties::fromArray([
-            'activeTags' => $this->option(Option::MODIFIERS, []),
+            'activeTags' => $this->option(Option::TAGS, []),
             'negativePrompt' => $this->option(Option::NEGATIVE_PROMPT, ''),
             'path' => $this->option(Option::PATH, './build'),
             'prompt' => $this->option(Option::PROMPT),
