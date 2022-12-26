@@ -28,7 +28,7 @@ class ImageProperties extends DataTransferObject
 
     public string $outputFormat = 'png';
 
-    public int $outputQuality = 85;
+    public int $outputQuality = 75;
 
     public ?string $prompt = null;
 
