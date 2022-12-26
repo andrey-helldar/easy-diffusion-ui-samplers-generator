@@ -15,6 +15,7 @@ use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 abstract class Command extends BaseCommand
 {
@@ -31,7 +32,7 @@ abstract class Command extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->input = $input;
-        $this->output = Output::make($this->input, $output);
+        $this->output = Output::make($this->input, new SymfonyStyle($input, $output));
 
         $this->validateOptions();
         $this->info();

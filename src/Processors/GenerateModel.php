@@ -6,6 +6,7 @@ namespace StableDiffusion\SamplersGenerator\Processors;
 
 use DragonCode\Support\Facades\Helpers\Arr;
 use StableDiffusion\SamplersGenerator\Models\ImageProperties;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class GenerateModel extends Processor
 {
@@ -16,11 +17,13 @@ class GenerateModel extends Processor
         $samplers = $this->samplers();
         $steps = $this->steps();
 
-        $this->output->task('Generating', fn () => $this->process($this->properties, $samplers, $steps));
-        $this->output->task('Storing', fn () => $this->store($samplers, $steps));
+        $bar = $this->progressBar(count($samplers), count($steps), count($this->vae()));
+
+        $this->process($this->properties, $samplers, $steps, $bar);
+        $this->store($samplers, $steps);
     }
 
-    protected function process(ImageProperties $properties, array $samplers, array $steps): void
+    protected function process(ImageProperties $properties, array $samplers, array $steps, ProgressBar $bar): void
     {
         foreach ($this->vae() as $vae) {
             foreach ($samplers as $sampler) {
@@ -30,6 +33,8 @@ class GenerateModel extends Processor
                     $properties->useVaeModel = $vae;
 
                     $this->collection[$sampler][$step] = $this->generate($properties);
+
+                    $bar->advance();
                 }
             }
         }
@@ -42,7 +47,10 @@ class GenerateModel extends Processor
 
     protected function store(array $samplers, array $steps): void
     {
-        $this->filesystem->store($this->properties, $samplers, $steps, $this->collection);
+        $this->output->task(
+            'Storing',
+            fn () => $this->filesystem->store($this->properties, $samplers, $steps, $this->collection)
+        );
     }
 
     protected function vae(): array
@@ -58,5 +66,23 @@ class GenerateModel extends Processor
     protected function steps(): array
     {
         return Arr::sort($this->config->get('steps'));
+    }
+
+    protected function progressBar(int ...$counts): ProgressBar
+    {
+        return $this->output->createProgressBar(
+            $this->progressBarSteps($counts)
+        );
+    }
+
+    protected function progressBarSteps(array $counts): int
+    {
+        $result = 1;
+
+        foreach ($counts as $count) {
+            $result *= $count;
+        }
+
+        return $result;
     }
 }

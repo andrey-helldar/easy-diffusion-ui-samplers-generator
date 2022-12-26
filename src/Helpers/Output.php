@@ -8,11 +8,12 @@ use DragonCode\Support\Concerns\Makeable;
 use DragonCode\Support\Facades\Instances\Call;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Console\View\Components\Factory;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * @method static Output make(InputInterface $input, OutputInterface $output)
+ * @method static Output make(InputInterface $input, SymfonyStyle $output)
  */
 class Output
 {
@@ -23,7 +24,7 @@ class Output
 
     public function __construct(
         protected InputInterface $input,
-        protected OutputInterface $output
+        protected SymfonyStyle $output
     ) {
     }
 
@@ -62,6 +63,11 @@ class Output
     public function emptyLine(): void
     {
         $this->output->writeln('');
+    }
+
+    public function createProgressBar(int $max): ProgressBar
+    {
+        return $this->output->createProgressBar($max);
     }
 
     protected function when(bool $when, callable $callback, ?callable $fallback = null): void
