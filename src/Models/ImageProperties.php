@@ -81,7 +81,7 @@ class ImageProperties extends DataTransferObject
     public function toImage(): array
     {
         return [
-            'prompt' => $this->prompt,
+            'prompt' => $this->originalPrompt,
             'negative_prompt' => $this->negativePrompt,
             'modifiers' => $this->activeTags,
             'model' => $this->useStableDiffusionModel,
@@ -98,12 +98,14 @@ class ImageProperties extends DataTransferObject
 
     protected function resolve(): void
     {
-        $this->resolveOriginalPrompt();
+        $this->resolvePrompt();
     }
 
-    protected function resolveOriginalPrompt(): void
+    protected function resolvePrompt(): void
     {
-        $this->originalPrompt = $this->prompt;
+        $tags = implode(', ', $this->activeTags);
+
+        $this->prompt = trim($this->originalPrompt . ', ' . $tags, ', ');
     }
 
     protected function castPrompt(string $value): string

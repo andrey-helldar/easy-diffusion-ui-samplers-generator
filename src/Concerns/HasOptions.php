@@ -16,14 +16,14 @@ trait HasOptions
     {
         return ImageProperties::fromArray([
             'activeTags' => $this->option(Option::TAGS, []),
+            'device' => $this->device(),
             'negativePrompt' => $this->option(Option::NEGATIVE_PROMPT, ''),
+            'originalPrompt' => $this->option(Option::PROMPT),
             'path' => $this->option(Option::PATH, './build'),
-            'prompt' => $this->option(Option::PROMPT),
             'seed' => $this->option(Option::SEED, $this->generateSeed()),
+            'showPathInfo' => $this->option(Option::SHOW_PATH, true),
             'useFaceCorrection' => $this->option(Option::FIX_FACES, false),
             'useStableDiffusionModel' => $this->option(Option::MODEL),
-            'showPathInfo' => $this->option(Option::SHOW_PATH, true),
-            'device' => $this->device()
         ]);
     }
 
