@@ -49,7 +49,7 @@ class Storage
 
     protected function storeParameters(ImageProperties $properties, string $path): void
     {
-        File::store($path, $properties->toJson(JSON_UNESCAPED_UNICODE ^ JSON_PRETTY_PRINT));
+        File::store($path, $properties->toConfigFile());
     }
 
     protected function process(Image &$image, array $collection): void

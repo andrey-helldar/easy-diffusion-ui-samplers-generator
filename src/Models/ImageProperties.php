@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace StableDiffusion\SamplersGenerator\Models;
 
+use Carbon\Carbon;
 use DragonCode\SimpleDataTransferObject\DataTransferObject;
-use DragonCode\Support\Facades\Filesystem\Directory;
 use DragonCode\Support\Facades\Helpers\Arr;
 use DragonCode\Support\Facades\Helpers\Boolean;
 use DragonCode\Support\Facades\Helpers\Str;
@@ -97,6 +97,40 @@ class ImageProperties extends DataTransferObject
             ->toArray();
     }
 
+    public function toConfigFile(): string
+    {
+        return json_encode([
+            'numOutputsTotal' => 1,
+            'seed' => $this->seed,
+
+            'reqBody' => [
+                'prompt' => $this->prompt,
+                'negative_prompt' => $this->negativePrompt,
+                'active_tags' => $this->activeTags,
+                'width' => $this->width,
+                'height' => $this->height,
+                'seed' => $this->seed,
+                'num_inference_steps' => $this->numInferenceSteps,
+                'guidance_scale' => $this->guidanceScale,
+                'use_face_correction' => $this->useFaceCorrection,
+                'sampler' => $this->sampler,
+                'use_stable_diffusion_model' => $this->useStableDiffusionModel,
+                'use_vae_model' => $this->useVaeModel,
+                'use_hypernetwork_model' => '',
+                'hypernetwork_strength' => 1,
+                'num_outputs' => $this->numOutputs,
+                'stream_image_progress' => false,
+                'show_only_filtered_image' => true,
+                'output_format' => $this->outputFormat
+            ]
+        ], JSON_UNESCAPED_UNICODE ^ JSON_PRETTY_PRINT);
+    }
+
+    public function getInitiatedAt(): string
+    {
+        return Carbon::createFromTimestamp($this->sessionId)->format('Y-m-d_H-i-s');
+    }
+
     protected function resolve(): void
     {
         $this->resolvePrompt();
@@ -112,15 +146,6 @@ class ImageProperties extends DataTransferObject
     protected function castPrompt(string $value): string
     {
         return $this->cleanString($value);
-    }
-
-    protected function castPath(string $value): string
-    {
-        $value .= date('/Y-m-d-H-i-s');
-
-        Directory::ensureDirectory($value);
-
-        return realpath($value);
     }
 
     protected function castActiveTags(array $values): array
