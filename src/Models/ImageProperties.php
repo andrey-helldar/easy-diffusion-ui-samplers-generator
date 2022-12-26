@@ -80,7 +80,7 @@ class ImageProperties extends DataTransferObject
 
     public function toImage(): array
     {
-        return [
+        return Arr::of([
             'prompt' => $this->originalPrompt,
             'negative_prompt' => $this->negativePrompt,
             'modifiers' => $this->activeTags,
@@ -91,8 +91,10 @@ class ImageProperties extends DataTransferObject
             'face_correction' => $this->getFaceCorrection(),
             'seed' => $this->seed,
             'device' => $this->device,
-            'date' => $this->getDate(),
-        ];
+            'generated_at' => $this->getDate(),
+        ])
+            ->renameKeys(fn (string $key) => Str::of($key)->title()->replace('_', ' ')->toString())
+            ->toArray();
     }
 
     protected function resolve(): void
