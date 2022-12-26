@@ -35,9 +35,7 @@ class Settings extends Processor
         foreach ($files as $file) {
             $path = realpath($directory . '/' . $file);
 
-            $this->isValid($path)
-                ? $this->runNetwork($path, $file, $sessionId)
-                : $this->warning($path);
+            $this->runNetwork($path, $file, $sessionId);
         }
     }
 
@@ -48,11 +46,6 @@ class Settings extends Processor
         $properties = $this->createProperties($this->load($path), $sessionId);
 
         $this->resolveProcessor(GenerateModels::class, $properties)->handle();
-    }
-
-    protected function warning(string $file): void
-    {
-        $this->output->warn("File \"$file\" contains invalid settings. Skipped.");
     }
 
     protected function isValid(string $filename): bool
@@ -79,7 +72,15 @@ class Settings extends Processor
 
     protected function files(): array
     {
-        return File::names($this->getPath(), fn (string $filename) => Str::endsWith($filename, 'json'));
+        return File::names(
+            $this->getPath(),
+            fn (string $filename) => $this->isJsonFile($filename) && $this->isValid($filename)
+        );
+    }
+
+    protected function isJsonFile(string $path): bool
+    {
+        return Str::endsWith($path, 'json');
     }
 
     protected function getPath(): string

@@ -12,6 +12,11 @@ class SettingsNotFoundException extends RuntimeException
     {
         $directory = realpath($directory);
 
-        parent::__construct("JSON files of saved settings not found in \"$directory\" folder", 500);
+        parent::__construct($this->message($directory), 500);
+    }
+
+    protected function message(string $directory): string
+    {
+        return "The specified folder \"$directory\" does not contain json configuration files or these files are corrupted.";
     }
 }
