@@ -30,9 +30,9 @@ class Storage
 
     public function store(
         ImageProperties $properties,
-        array           $samplers,
-        array           $steps,
-        array           $collection
+        array $samplers,
+        array $steps,
+        array $collection
     ): void {
         $image = $this->canvas(count($samplers) + 1, count($steps) + 2);
 

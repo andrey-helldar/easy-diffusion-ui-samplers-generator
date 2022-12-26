@@ -116,7 +116,7 @@ class ImageProperties extends DataTransferObject
             'numOutputsTotal' => 1,
             'seed'            => $this->seed,
 
-            'reqBody' => [
+            'reqBody'         => [
                 'prompt'                     => $this->prompt,
                 'negative_prompt'            => $this->negativePrompt,
                 'active_tags'                => $this->activeTags,
