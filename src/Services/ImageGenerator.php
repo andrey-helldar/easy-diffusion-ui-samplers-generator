@@ -32,12 +32,22 @@ class ImageGenerator
     {
         $response = $this->http->get('/image/stream/' . $task);
 
-        if (Arr::get($response, 'status') !== 'succeeded') {
+        if ($this->doesntSuccess($response)) {
             sleep(1);
 
             return $this->getImage($task);
         }
 
         return Arr::get($response, 'output.0.data');
+    }
+
+    protected function isSuccess(array $response): bool
+    {
+        return Arr::get($response, 'status') === 'succeeded';
+    }
+
+    protected function doesntSuccess(array $response): bool
+    {
+        return !$this->isSuccess($response);
     }
 }
