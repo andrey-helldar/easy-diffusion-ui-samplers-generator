@@ -63,6 +63,8 @@ class ImageProperties extends DataTransferObject
 
     public string $path = '';
 
+    public ?string $configName = null;
+
     public bool $showPathInfo = true;
 
     public ?string $device = null;
@@ -114,7 +116,7 @@ class ImageProperties extends DataTransferObject
             'numOutputsTotal' => 1,
             'seed'            => $this->seed,
 
-            'reqBody'         => [
+            'reqBody' => [
                 'prompt'                     => $this->prompt,
                 'negative_prompt'            => $this->negativePrompt,
                 'active_tags'                => $this->activeTags,
@@ -195,6 +197,13 @@ class ImageProperties extends DataTransferObject
     public function setPath(string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function setConfigName(string $name): self
+    {
+        $this->configName = $name;
 
         return $this;
     }

@@ -6,6 +6,7 @@ namespace StableDiffusion\SamplersGenerator\Processors;
 
 use DragonCode\Contracts\DataTransferObject\DataTransferObject;
 use DragonCode\Support\Facades\Filesystem\File;
+use DragonCode\Support\Facades\Filesystem\Path;
 use DragonCode\Support\Facades\Helpers\Arr;
 use DragonCode\Support\Facades\Helpers\Str;
 use StableDiffusion\SamplersGenerator\Exceptions\SettingsNotFoundException;
@@ -35,15 +36,15 @@ class Settings extends Processor
         foreach ($files as $file) {
             $path = realpath($directory . '/' . $file);
 
-            $this->runNetwork($path, $file, $sessionId);
+            $this->runNetwork($path, $file, $sessionId, $this->configName($file));
         }
     }
 
-    protected function runNetwork(string $path, string $filename, int $sessionId): void
+    protected function runNetwork(string $path, string $filename, int $sessionId, string $configName): void
     {
         $this->output->info('Run: ' . $filename);
 
-        $properties = $this->createProperties($this->load($path), $sessionId);
+        $properties = $this->createProperties($this->load($path), $sessionId, $configName);
 
         $this->resolveProcessor(GenerateModels::class, $properties)->handle();
     }
@@ -53,10 +54,11 @@ class Settings extends Processor
         return SettingsSchema::make($this->output)->isValid($filename);
     }
 
-    protected function createProperties(array $items, int $sessionId): DataTransferObject|ImageProperties
+    protected function createProperties(array $items, int $sessionId, string $configName): DataTransferObject|ImageProperties
     {
         return ImageProperties::fromArray($items)
             ->setSessionId($sessionId)
+            ->setConfigName($configName)
             ->setPath($this->properties->path)
             ->setDevice($this->properties->device)
             ->resetNumOutputs()
@@ -68,6 +70,11 @@ class Settings extends Processor
     protected function load(string $path): array
     {
         return Arr::ofFile($path)->toArray();
+    }
+
+    protected function configName(string $filename): string
+    {
+        return Path::filename($filename);
     }
 
     protected function files(): array

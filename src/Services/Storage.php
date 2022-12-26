@@ -30,17 +30,17 @@ class Storage
 
     public function store(
         ImageProperties $properties,
-        array $samplers,
-        array $steps,
-        array $collection
+        array           $samplers,
+        array           $steps,
+        array           $collection
     ): void {
         $image = $this->canvas(count($samplers) + 1, count($steps) + 2);
 
         $this->setHeaders($image, $properties, $samplers, $steps);
         $this->process($image, $collection);
 
-        $this->storeImage($image, $this->getPath($properties->path, $properties, $properties->outputFormat));
-        $this->storeParameters($properties, $this->getPath($properties->path, $properties, 'json'));
+        $this->storeImage($image, $this->getPath($properties, $properties->outputFormat));
+        $this->storeParameters($properties, $this->getPath($properties, 'json'));
     }
 
     protected function storeImage(Image $image, string $path): void
@@ -132,9 +132,9 @@ class Storage
             ->get();
     }
 
-    protected function getPath(string $directory, ImageProperties $properties, string $extension): string
+    protected function getPath(ImageProperties $properties, string $extension): string
     {
-        $directory .= '/' . $properties->getInitiatedAt();
+        $directory = implode('/', [$properties->path, $properties->getInitiatedAt(), $properties->configName]);
 
         $this->ensureDirectory($directory);
 
