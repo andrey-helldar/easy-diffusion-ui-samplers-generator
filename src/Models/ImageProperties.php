@@ -58,8 +58,10 @@ class ImageProperties extends DataTransferObject
     public int $width = 512;
 
     public string $path = '';
-    
+
     public bool $showPathInfo = true;
+
+    public ?string $device = null;
 
     public function __construct(array $items = [])
     {
@@ -87,6 +89,7 @@ class ImageProperties extends DataTransferObject
             'steps' => $this->numInferenceSteps,
             'guidance_scale' => $this->guidanceScale,
             'face_correction' => $this->getFaceCorrection(),
+            'device' => $this->device,
             'date' => $this->getDate(),
         ];
     }

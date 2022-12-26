@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace StableDiffusion\SamplersGenerator\Processors;
 
-use StableDiffusion\SamplersGenerator\Concerns\HasModels;
+use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
 use StableDiffusion\SamplersGenerator\Helpers\Output;
 use StableDiffusion\SamplersGenerator\Models\ImageProperties;
 use StableDiffusion\SamplersGenerator\Services\Config;
@@ -13,7 +13,7 @@ use StableDiffusion\SamplersGenerator\Services\Storage;
 
 abstract class Processor
 {
-    use HasModels;
+    use HasSystemInfo;
 
     public function __construct(
         protected Output $output,

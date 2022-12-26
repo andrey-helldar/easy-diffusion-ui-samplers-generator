@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace StableDiffusion\SamplersGenerator\Commands;
 
 use DragonCode\Support\Facades\Instances\Instance;
-use StableDiffusion\SamplersGenerator\Concerns\HasModels;
+use StableDiffusion\SamplersGenerator\Concerns\HasSystemInfo;
 use StableDiffusion\SamplersGenerator\Concerns\HasOptions;
 use StableDiffusion\SamplersGenerator\Concerns\ValidateOptions;
 use StableDiffusion\SamplersGenerator\Enums\Option;
@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class Command extends BaseCommand
 {
-    use HasModels;
+    use HasSystemInfo;
     use HasOptions;
     use ValidateOptions;
 

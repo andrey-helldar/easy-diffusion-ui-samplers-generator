@@ -6,7 +6,7 @@ namespace StableDiffusion\SamplersGenerator\Models;
 
 use DragonCode\SimpleDataTransferObject\DataTransferObject;
 
-class Models extends DataTransferObject
+class Neurals extends DataTransferObject
 {
     /** @var array<string> */
     public array $models = [];
