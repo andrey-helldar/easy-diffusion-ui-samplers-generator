@@ -40,7 +40,9 @@ abstract class Processor
     protected function showPath(): void
     {
         if ($this->showPathInfo) {
-            $this->output->twoColumnDetail('Output Path', $this->properties->path);
+            $path = realpath($this->properties->path . '/' . $this->properties->getInitiatedAt());
+
+            $this->output->twoColumnDetail('Output Path', $path);
         }
     }
 
