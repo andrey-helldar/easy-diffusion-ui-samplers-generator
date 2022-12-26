@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace StableDiffusion\SamplersGenerator\Services;
 
 use DragonCode\Support\Facades\Helpers\Arr;
-use DragonCode\Support\Facades\Helpers\Str;
 use StableDiffusion\SamplersGenerator\Models\ImageProperties;
-use StableDiffusion\SamplersGenerator\Services\Images\TextBlock;
 
 class ImageGenerator
 {
@@ -16,23 +14,8 @@ class ImageGenerator
     ) {
     }
 
-    public function generate(ImageProperties $properties)
+    public function generate(ImageProperties $properties): string
     {
-        $values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
-        $colorCallback = fn () => $values[array_rand($values)];
-
-        $color = sprintf(
-            '#%s%s%s%s%s%s',
-            $colorCallback(),
-            $colorCallback(),
-            $colorCallback(),
-            $colorCallback(),
-            $colorCallback(),
-            $colorCallback()
-        );
-
-        return TextBlock::make()->background($color)->text($color)->get();
-
         $task = $this->createImage($properties);
 
         return $this->getImage($task);

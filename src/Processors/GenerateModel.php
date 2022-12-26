@@ -35,7 +35,7 @@ class GenerateModel extends Processor
         }
     }
 
-    protected function generate(ImageProperties $properties)
+    protected function generate(ImageProperties $properties): string
     {
         return $this->image->generate($properties);
     }
