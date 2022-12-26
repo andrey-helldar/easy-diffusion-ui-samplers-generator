@@ -8,6 +8,7 @@ use ArchTech\Enums\InvokableCases;
 
 /**
  * @method static string FIX_FACES()
+ * @method static string MODEL()
  * @method static string MODIFIERS()
  * @method static string NEGATIVE_PROMPT()
  * @method static string PATH()
@@ -19,6 +20,7 @@ enum Option: string
     use InvokableCases;
 
     case FIX_FACES = 'fix-faces';
+    case MODEL = 'model';
     case MODIFIERS = 'modifiers';
     case NEGATIVE_PROMPT = 'negative-prompt';
     case PATH = 'path';

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace StableDiffusion\SamplersGenerator\Models;
 
 use DragonCode\SimpleDataTransferObject\DataTransferObject;
+use DragonCode\Support\Facades\Filesystem\Directory;
 use DragonCode\Support\Facades\Helpers\Arr;
 use DragonCode\Support\Facades\Helpers\Str;
 
@@ -52,7 +53,11 @@ class ImageProperties extends DataTransferObject
 
     public ?string $useVaeModel = null;
 
+    public bool $useFaceCorrection = false;
+
     public int $width = 512;
+
+    public string $path = '';
 
     public function __construct(array $items = [])
     {
@@ -68,6 +73,22 @@ class ImageProperties extends DataTransferObject
         return Arr::renameKeys(parent::toArray(), fn (string $key) => Str::snake($key));
     }
 
+    public function toImage(): array
+    {
+        return [
+            'prompt' => $this->prompt,
+            'negative_prompt' => $this->negativePrompt,
+            'modifiers' => $this->activeTags,
+            'model' => $this->useStableDiffusionModel,
+            'vae' => $this->useVaeModel,
+            'sampler' => $this->sampler,
+            'steps' => $this->numInferenceSteps,
+            'guidance_scale' => $this->guidanceScale,
+            'face_correction' => $this->getFaceCorrection(),
+            'date' => $this->getDate(),
+        ];
+    }
+
     protected function resolve(): void
     {
         $this->resolveOriginalPrompt();
@@ -78,13 +99,30 @@ class ImageProperties extends DataTransferObject
         $this->originalPrompt = $this->prompt;
     }
 
-    protected function casePrompt(string $value): string
+    protected function castPrompt(string $value): string
     {
         return trim($value);
+    }
+
+    protected function castPath(string $value): string
+    {
+        Directory::ensureDirectory($value);
+
+        return realpath($value);
     }
 
     protected function setSessionId(): void
     {
         $this->sessionId = time();
+    }
+
+    protected function getFaceCorrection(): string | bool
+    {
+        return $this->useFaceCorrection ? 'GFPGANv1.3' : false;
+    }
+
+    protected function getDate(): string
+    {
+        return date('Y-m-d, H:i');
     }
 }

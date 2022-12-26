@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace StableDiffusion\SamplersGenerator\Services\Images;
 
+use DragonCode\Support\Facades\Helpers\Arr;
+use DragonCode\Support\Facades\Helpers\Boolean;
 use Intervention\Image\Image;
 use StableDiffusion\SamplersGenerator\Models\ImageProperties;
 
 class Parameters extends Base
 {
     protected ?ImageProperties $properties = null;
-    
-    protected int $fontSize = 36;
+
+    protected int $fontSize = 28;
+
+    protected string $textAlign = 'left';
+
+    protected string $textValign = 'top';
 
     public function properties(ImageProperties $properties): self
     {
@@ -27,40 +33,28 @@ class Parameters extends Base
 
     protected function getContent(): string
     {
-        $result = '';
-
-        foreach ($this->properties->toArray() as $key => $value) {
-            if (in_array($key, [
-                'height',
-                'width',
-                'num_outputs',
-                'original_prompt',
-                'output_format',
-                'output_quality',
-                'save_to_disk_path',
-                'session_id',
-                'show_only_filtered_image',
-                'stream_image_progress',
-                'stream_progress_updates',
-                'turbo',
-                'use_full_precision'
-            ])) {
-                continue;
-            }
-
-            $result .= $key . ': ' . (is_array($value) ? implode(', ', $value) : $value) . PHP_EOL;
-        }
-
-        return $result;
+        return Arr::of($this->properties->toImage())
+            ->map(fn (mixed $value, string $key) => $key . ': ' . $this->resolveValue($value))
+            ->implode(PHP_EOL)
+            ->toString();
     }
 
-    protected function getHeight(): int
+    protected function resolveValue(mixed $value): string
     {
-        return (int)(parent::getHeight() / 4);
+        return match (gettype($value)) {
+            'array' => implode(', ', $value),
+            'boolean' => Boolean::toString($value),
+            default => (string)$value
+        };
+    }
+
+    protected function getX(): int
+    {
+        return 50;
     }
 
     protected function getY(): int
     {
-        return (int)(parent::getY() / 4);
+        return 50;
     }
 }

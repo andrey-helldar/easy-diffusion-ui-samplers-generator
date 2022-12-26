@@ -28,6 +28,10 @@ abstract class Base
 
     protected string $fontColor = '#292929';
 
+    protected string $textAlign = 'center';
+
+    protected string $textValign = 'center';
+
     protected ?string $text = null;
 
     public function __construct(
@@ -96,7 +100,7 @@ abstract class Base
             ->file($this->font)
             ->size($this->fontSize)
             ->color($this->fontColor)
-            ->align('center')
-            ->valign('center');
+            ->align($this->textAlign)
+            ->valign($this->textValign);
     }
 }

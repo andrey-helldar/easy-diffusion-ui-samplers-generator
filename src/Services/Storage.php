@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StableDiffusion\SamplersGenerator\Services;
 
+use Closure;
 use DragonCode\Support\Facades\Helpers\Arr;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
@@ -14,7 +15,7 @@ use StableDiffusion\SamplersGenerator\Services\Images\Header;
 use StableDiffusion\SamplersGenerator\Services\Images\Parameters;
 use StableDiffusion\SamplersGenerator\Services\Images\TextBlock;
 
-class Filesystem
+class Storage
 {
     protected int $cell = 512;
 
@@ -26,7 +27,6 @@ class Filesystem
     }
 
     public function store(
-        string $path,
         ImageProperties $properties,
         array $samplers,
         array $steps,
@@ -35,25 +35,25 @@ class Filesystem
         $image = $this->canvas(count($samplers) + 1, count($steps) + 2);
 
         $this->setHeaders($image, $properties, $samplers, $steps);
+        $this->process($image, $collection);
 
+        $image->save($this->getPath($properties->path, $properties));
+    }
+
+    protected function process(Image &$image, array $collection): void
+    {
         $collection = Arr::ksort($collection);
 
         foreach (array_values($collection) as $column => $items) {
             foreach (array_values($items) as $row => $data) {
-                $cell = FromBase64::make()->content($data)->get();
-
-                $this->insert($image, $column + 1, $row + 2, $cell);
+                $this->insert($image, $column + 1, $row + 2, $this->resolveImage($data));
             }
         }
-
-        $image->save($this->getPath($path, $properties));
-
-        dd('aaa');
     }
 
-    protected function insert(Image &$area, int $left, int $top, Image $data): void
+    protected function insert(Image &$area, int $left, float $top, Image $data): void
     {
-        $area->insert($data, 'top-left', $left * $this->cell, $top * $this->cell);
+        $area->insert($data, 'top-left', $left * $this->cell, (int)($top * $this->cell));
     }
 
     protected function setHeaders(Image &$image, ImageProperties $properties, array $samplers, array $steps): void
@@ -76,25 +76,33 @@ class Filesystem
     {
         $data = Parameters::make()->columns($columns)->properties($properties)->get();
 
-        $this->insert($image, 0, 1, $data);
+        $this->insert($image, 0, 0.5, $data);
     }
 
     protected function setSamplers(Image &$image, array $samplers): void
     {
-        foreach ($samplers as $index => $sampler) {
-            $data = $this->textBlock($sampler);
-
-            $this->insert($image, $index + 1, 1, $data);
-        }
+        $this->setHeader($image, $samplers, fn (int $index) => $index + 1, fn () => 1);
     }
 
     protected function setSteps(Image &$image, array $steps): void
     {
-        foreach ($steps as $index => $step) {
-            $data = $this->textBlock('Step: ' . $step);
+        $this->setHeader($image, $steps, fn ($i) => 0, fn (int $index) => $index + 2, 'Step');
+    }
 
-            $this->insert($image, 0, $index + 2, $data);
+    protected function setHeader(Image &$image, array $items, Closure $left, Closure $top, ?string $prefix = null): void
+    {
+        foreach (array_values($items) as $index => $value) {
+            $data = $this->textBlock(
+                ltrim($prefix . ': ' . $value, ': ')
+            );
+
+            $this->insert($image, $left($index), $top($index), $data);
         }
+    }
+
+    protected function resolveImage(Image | string $content): Image
+    {
+        return FromBase64::make()->content($content)->get();
     }
 
     protected function textBlock(string $text): Image

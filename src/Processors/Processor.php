@@ -4,25 +4,23 @@ declare(strict_types=1);
 
 namespace StableDiffusion\SamplersGenerator\Processors;
 
-use DragonCode\Support\Facades\Filesystem\Directory;
+use StableDiffusion\SamplersGenerator\Concerns\HasModels;
 use StableDiffusion\SamplersGenerator\Helpers\Output;
+use StableDiffusion\SamplersGenerator\Models\ImageProperties;
 use StableDiffusion\SamplersGenerator\Services\Config;
-use StableDiffusion\SamplersGenerator\Services\Filesystem;
 use StableDiffusion\SamplersGenerator\Services\ImageGenerator;
+use StableDiffusion\SamplersGenerator\Services\Storage;
 
 abstract class Processor
 {
+    use HasModels;
+
     public function __construct(
         protected Output $output,
-        protected string $prompt,
-        protected string $negativePrompt,
-        protected array $modifiers,
-        protected bool $fixFaces,
-        protected string $path,
-        protected int $seed,
+        protected ImageProperties $properties,
         protected Config $config = new Config(),
         protected ImageGenerator $image = new ImageGenerator(),
-        protected Filesystem $filesystem = new Filesystem()
+        protected Storage $filesystem = new Storage()
     ) {
         $this->resolvePath();
     }
@@ -31,21 +29,12 @@ abstract class Processor
 
     protected function resolvePath(): void
     {
-//        $this->path = $this->ensureDirectory($this->path . '/build/' . $this->today());
-        $this->path = $this->ensureDirectory($this->path . '/build');
-
-        $this->output->line('Output Path: ' . $this->path);
+        $this->output->line('Output Path: ' . $this->properties->path);
+        $this->output->emptyLine();
     }
 
-    protected function ensureDirectory(string $path): string
+    protected function resolveProcessor(string $processor, ImageProperties $properties): self
     {
-        Directory::ensureDirectory($path);
-
-        return realpath($path);
-    }
-
-    protected function today(): string
-    {
-        return date('Y-m-d-H-i-s');
+        return new $processor($this->output, $properties, $this->config, $this->image, $this->filesystem);
     }
 }

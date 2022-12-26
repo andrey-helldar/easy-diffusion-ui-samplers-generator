@@ -31,7 +31,7 @@ class ImageGenerator
             $colorCallback()
         );
 
-        return TextBlock::make()->background($color)->text(Str::random(8))->get();
+        return TextBlock::make()->background($color)->text($color)->get();
 
         $task = $this->createImage($properties);
 
