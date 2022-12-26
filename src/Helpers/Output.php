@@ -34,7 +34,16 @@ class Output
         $this->when(
             $this->hasComponent(),
             fn () => $this->component()->info($message),
-            fn () => $this->output->writeln($message)
+            fn () => $this->output->info($message)
+        );
+    }
+
+    public function warn(string $message): void
+    {
+        $this->when(
+            $this->hasComponent(),
+            fn () => $this->component()->warn($message),
+            fn () => $this->output->warning($message)
         );
     }
 
