@@ -107,13 +107,13 @@ class ImageProperties extends DataTransferObject
 
     protected function castPrompt(string $value): string
     {
-        return trim($value);
+        return $this->cleanString($value);
     }
 
     protected function castPath(string $value): string
     {
         $value .= date('/Y-m-d-H-i-s');
-        
+
         Directory::ensureDirectory($value);
 
         return realpath($value);
@@ -123,7 +123,7 @@ class ImageProperties extends DataTransferObject
     {
         return Arr::of($values)
             ->filter()
-            ->map(fn (string $value) => trim($value))
+            ->map(fn (string $value) => $this->cleanString($value))
             ->unique()
             ->sort()
             ->values()
@@ -148,5 +148,10 @@ class ImageProperties extends DataTransferObject
     protected function getDate(): string
     {
         return date('Y-m-d, H:i');
+    }
+
+    protected function cleanString(string $value): string
+    {
+        return Str::of($value)->squish()->trim()->toString();
     }
 }
