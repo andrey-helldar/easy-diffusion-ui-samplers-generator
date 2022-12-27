@@ -242,6 +242,27 @@ Q: Why is it not written in python?
 
 A: I was interested in writing a pet project in one evening and I don't know python 😁
 
+---
+
+Q: What models do you use?
+
+A: For various purposes, I use the following models:
+
+* Models:
+    * https://civitai.com/?types=Checkpoint
+        * https://civitai.com/models/1102/synthwavepunk (version: 3)
+        * https://civitai.com/models/1259/elldreths-og-4060-mix (version: 1)
+        * https://civitai.com/models/2504/handas-3dkx10b (version: 1)
+        * https://civitai.com/models/1116/rpg (version: 1)
+        * https://civitai.com/models/1186/novel-inkpunk-f222 (version: 1)
+        * https://civitai.com/models/5/elden-ring-style (version: 3)
+    * https://rentry.org/sdmodels
+      * https://huggingface.co/stabilityai/stable-diffusion-2-depth
+      * https://huggingface.co/stabilityai/stable-diffusion-2
+* VAE
+  * https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/main/vae-ft-ema-560000-ema-pruned.ckpt
+  * https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.ckpt
+
 ## License
 
 This package is licensed under the [MIT License](LICENSE).
