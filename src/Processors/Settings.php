@@ -62,6 +62,7 @@ class Settings extends Processor
             ->setConfigName($configName)
             ->setPath($this->properties->path)
             ->setDevice($this->properties->device)
+            ->setSingleModel($this->properties->singleModel)
             ->setOutput(
                 $this->getParam($items, 'reqBody.output_format', $this->properties->outputFormat),
                 $this->getParam($items, 'reqBody.output_quality', $this->properties->outputQuality)

@@ -16,7 +16,6 @@ trait HasOptions
     {
         return ImageProperties::fromArray([
             'activeTags'              => $this->option(Option::TAGS, []),
-            'device'                  => $this->device(),
             'negativePrompt'          => $this->option(Option::NEGATIVE_PROMPT, ''),
             'originalPrompt'          => $this->option(Option::PROMPT),
             'path'                    => $this->option(Option::PATH, './build'),
@@ -24,10 +23,12 @@ trait HasOptions
             'showPathInfo'            => $this->option(Option::SHOW_PATH, true),
             'useFaceCorrection'       => $this->option(Option::FIX_FACES, false),
             'useStableDiffusionModel' => $this->option(Option::MODEL),
-            'width'                   => $this->getCellSize(),
-            'height'                  => $this->getCellSize(),
             'outputFormat'            => $this->option(Option::OUTPUT_FORMAT, 'jpeg'),
             'outputQuality'           => $this->option(Option::OUTPUT_QUALITY, 75),
+            'singleModel'             => $this->option(Option::SINGLE_MODEL, false),
+            'width'                   => $this->getCellSize(),
+            'height'                  => $this->getCellSize(),
+            'device'                  => $this->device(),
         ]);
     }
 

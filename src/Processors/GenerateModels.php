@@ -8,9 +8,7 @@ class GenerateModels extends Processor
 {
     protected function run(): void
     {
-        $items = $this->models();
-
-        $this->each($items->models);
+        $this->each($this->getModels());
     }
 
     protected function each(array $models): void
@@ -33,5 +31,14 @@ class GenerateModels extends Processor
     protected function info(string $model): void
     {
         $this->output->info($model);
+    }
+
+    protected function getModels(): array
+    {
+        if ($this->properties->singleModel) {
+            return [$this->properties->useStableDiffusionModel];
+        }
+
+        return $this->models()->models;
     }
 }

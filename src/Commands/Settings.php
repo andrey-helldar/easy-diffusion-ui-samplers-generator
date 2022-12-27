@@ -36,6 +36,12 @@ class Settings extends Command
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'Specifies the percentage quality of the output image. By default, 75.'
+            )
+            ->addOption(
+                Option::SINGLE_MODEL(),
+                null,
+                InputOption::VALUE_NONE,
+                'Specifies whether the sampler will be generated on the model from the configuration. By default, samplers are generated on all available models.'
             );
     }
 }

@@ -69,13 +69,17 @@ class ImageProperties extends DataTransferObject
 
     public ?string $device = null;
 
+    public bool $singleModel = false;
+
     protected $map = [
-        'reqBody.prompt'              => 'originalPrompt',
-        'reqBody.active_tags'         => 'activeTags',
-        'reqBody.guidance_scale'      => 'guidanceScale',
-        'reqBody.use_face_correction' => 'useFaceCorrection',
-        'reqBody.output_format'       => 'outputFormat',
-        'reqBody.output_quality'      => 'outputQuality',
+        'reqBody.prompt'                     => 'originalPrompt',
+        'reqBody.active_tags'                => 'activeTags',
+        'reqBody.guidance_scale'             => 'guidanceScale',
+        'reqBody.use_face_correction'        => 'useFaceCorrection',
+        'reqBody.output_format'              => 'outputFormat',
+        'reqBody.output_quality'             => 'outputQuality',
+        'reqBody.use_stable_diffusion_model' => 'useStableDiffusionModel',
+        'reqBody.use_vae_model'              => 'useVaeModel',
     ];
 
     public function __construct(array $items = [])
@@ -194,6 +198,11 @@ class ImageProperties extends DataTransferObject
         return min(max((int) $value, 1), 100);
     }
 
+    protected function castSingleModel(mixed $value): bool
+    {
+        return Boolean::to($value);
+    }
+
     public function setSessionId(?int $timestamp = null): self
     {
         $this->sessionId = $timestamp ?: time();
@@ -234,6 +243,13 @@ class ImageProperties extends DataTransferObject
     {
         $this->width  = $size;
         $this->height = $size;
+
+        return $this;
+    }
+
+    public function setSingleModel(bool $single): self
+    {
+        $this->singleModel = $single;
 
         return $this;
     }
