@@ -51,7 +51,7 @@ class ImageProperties extends DataTransferObject
 
     public bool $turbo = true;
 
-    public bool $useFullPrecision = true;
+    public bool $useFullPrecision = false;
 
     public ?string $useStableDiffusionModel = null;
 
