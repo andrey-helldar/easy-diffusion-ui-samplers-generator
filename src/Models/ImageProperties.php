@@ -35,7 +35,7 @@ class ImageProperties extends DataTransferObject
 
     public ?string $prompt = null;
 
-    public string $sampler = 'plms';
+    public string $sampler = 'euler_a';
 
     public string $saveToDiskPath = '';
 
