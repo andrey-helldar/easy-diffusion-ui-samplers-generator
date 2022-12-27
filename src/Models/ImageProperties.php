@@ -55,7 +55,7 @@ class ImageProperties extends DataTransferObject
 
     public ?string $useStableDiffusionModel = null;
 
-    public ?string $useVaeModel = null;
+    public string $useVaeModel = '';
 
     public bool $useFaceCorrection = false;
 
@@ -99,7 +99,7 @@ class ImageProperties extends DataTransferObject
             'negative_prompt' => $this->negativePrompt,
             'tags'            => $this->activeTags,
             'model'           => $this->useStableDiffusionModel,
-            'vae'             => $this->useVaeModel,
+            'vae'             => $this->getVaeModel(),
             'sampler'         => $this->sampler,
             'guidance_scale'  => $this->guidanceScale,
             'face_correction' => $this->getFaceCorrection(),
@@ -264,6 +264,11 @@ class ImageProperties extends DataTransferObject
         $this->streamProgressUpdates = true;
 
         return $this;
+    }
+
+    public function getVaeModel(): string
+    {
+        return $this->useVaeModel ?: 'None';
     }
 
     protected function getFaceCorrection(): string|bool

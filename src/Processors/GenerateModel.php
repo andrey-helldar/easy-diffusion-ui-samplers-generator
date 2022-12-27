@@ -28,9 +28,9 @@ class GenerateModel extends Processor
         foreach ($this->vae() as $vae) {
             foreach ($samplers as $sampler) {
                 foreach ($steps as $step) {
-                    $properties->sampler           = $sampler;
+                    $properties->sampler = $sampler;
                     $properties->numInferenceSteps = $step;
-                    $properties->useVaeModel       = $vae;
+                    $properties->useVaeModel = $vae;
 
                     $this->collection[$sampler][$step] = $this->generate($properties);
 
@@ -58,7 +58,11 @@ class GenerateModel extends Processor
 
     protected function vae(): array
     {
-        return $this->models()->vae;
+        return Arr::of($this->models()->vae)
+            ->filter()
+            ->unique()
+            ->push('')
+            ->toArray();
     }
 
     protected function samplers(): array
