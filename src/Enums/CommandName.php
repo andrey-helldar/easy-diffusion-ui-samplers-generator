@@ -16,6 +16,8 @@ enum CommandName: string
     use InvokableCases;
 
     case MODEL = 'model';
+
     case MODELS = 'models';
+
     case SETTINGS = 'settings';
 }

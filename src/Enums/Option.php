@@ -24,14 +24,24 @@ enum Option: string
     use InvokableCases;
 
     case FIX_FACES = 'fix-faces';
+
     case MODEL = 'model';
+
     case NEGATIVE_PROMPT = 'negative-prompt';
+
     case OUTPUT_FORMAT = 'output-format';
+
     case OUTPUT_QUALITY = 'output-quality';
+
     case PATH = 'path';
+
     case PROMPT = 'prompt';
+
     case SEED = 'seed';
+
     case SHOW_PATH = 'show-path';
+
     case SINGLE_MODEL = 'single-model';
+
     case TAGS = 'tags';
 }
