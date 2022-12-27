@@ -24,6 +24,18 @@ class Settings extends Command
                 InputOption::VALUE_OPTIONAL,
                 'Path to save the generated samples. By default, in the "build" subfolder inside the current directory.',
                 './build'
+            )
+            ->addOption(
+                Option::OUTPUT_FORMAT(),
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Sets the file export format: jpeg or png. By default, jpeg.'
+            )
+            ->addOption(
+                Option::OUTPUT_QUALITY(),
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Specifies the percentage quality of the output image. By default, 75.'
             );
     }
 }

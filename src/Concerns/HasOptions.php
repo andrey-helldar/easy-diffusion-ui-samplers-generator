@@ -26,6 +26,8 @@ trait HasOptions
             'useStableDiffusionModel' => $this->option(Option::MODEL),
             'width'                   => $this->getCellSize(),
             'height'                  => $this->getCellSize(),
+            'outputFormat'            => $this->option(Option::OUTPUT_FORMAT, 'jpeg'),
+            'outputQuality'           => $this->option(Option::OUTPUT_QUALITY, 75),
         ]);
     }
 

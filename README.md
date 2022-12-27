@@ -66,6 +66,8 @@ bin/sampler models --prompt "a photograph of an astronaut riding a horse" --seed
 * `--fix-faces` - Enable fix incorrect faces and eyes via GFPGANv1.3. It's a boolean.
 * `--path` - Path to save the generated samples. By default, in the `./build` subfolder inside the current directory.
 * `--seed` - Seed ID of an early generated image.
+* `--output-format` - Sets the file export format: jpeg or png. By default, jpeg.
+* `--output-quality` - Specifies the percentage quality of the output image. By default, 75.
 
 ### Sampler generation for one model
 
@@ -94,6 +96,8 @@ bin/sampler models --prompt "a photograph of an astronaut riding a horse" --mode
 * `--fix-faces` - Enable fix incorrect faces and eyes via GFPGANv1.3. It's a boolean.
 * `--path` - Path to save the generated samples. By default, in the `./build` subfolder inside the current directory.
 * `--seed` - Seed ID of an early generated image.
+* `--output-format` - Sets the file export format: jpeg or png. By default, jpeg.
+* `--output-quality` - Specifies the percentage quality of the output image. By default, 75.
 
 ### Sampler generation for all models based on configuration files
 
@@ -177,6 +181,8 @@ For example:
 #### Available options
 
 * `--path` - Path to save the generated samples. By default, in the `./build` subfolder inside the current directory.
+* `--output-format` - Sets the file export format: jpeg or png. By default, jpeg.
+* `--output-quality` - Specifies the percentage quality of the output image. By default, 75.
 
 ## Example
 

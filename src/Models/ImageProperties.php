@@ -29,7 +29,7 @@ class ImageProperties extends DataTransferObject
 
     public ?string $originalPrompt = null;
 
-    public string $outputFormat = 'png';
+    public string $outputFormat = 'jpeg';
 
     public int $outputQuality = 75;
 
@@ -75,6 +75,7 @@ class ImageProperties extends DataTransferObject
         'reqBody.guidance_scale'      => 'guidanceScale',
         'reqBody.use_face_correction' => 'useFaceCorrection',
         'reqBody.output_format'       => 'outputFormat',
+        'reqBody.output_quality'      => 'outputQuality',
     ];
 
     public function __construct(array $items = [])
@@ -116,7 +117,7 @@ class ImageProperties extends DataTransferObject
             'numOutputsTotal' => 1,
             'seed'            => $this->seed,
 
-            'reqBody'         => [
+            'reqBody' => [
                 'prompt'                     => $this->prompt,
                 'negative_prompt'            => $this->negativePrompt,
                 'active_tags'                => $this->activeTags,
@@ -135,6 +136,7 @@ class ImageProperties extends DataTransferObject
                 'stream_image_progress'      => false,
                 'show_only_filtered_image'   => true,
                 'output_format'              => $this->outputFormat,
+                'output_quality'             => $this->outputQuality,
             ],
         ], JSON_UNESCAPED_UNICODE ^ JSON_PRETTY_PRINT);
     }
@@ -184,7 +186,12 @@ class ImageProperties extends DataTransferObject
 
     protected function castOutputFormat(string $value): string
     {
-        return Str::of($value)->lower()->contains(['jpg', 'jpeg']) ? 'jpeg' : 'png';
+        return Str::lower($value) === 'png' ? 'png' : 'jpeg';
+    }
+
+    protected function castOutputQuality(mixed $value): int
+    {
+        return min(max((int) $value, 1), 100);
     }
 
     public function setSessionId(?int $timestamp = null): self
@@ -211,6 +218,14 @@ class ImageProperties extends DataTransferObject
     public function setDevice(string $device): self
     {
         $this->device = $device;
+
+        return $this;
+    }
+
+    public function setOutput(string $extension, int $quality): self
+    {
+        $this->outputFormat  = $this->castOutputFormat($extension);
+        $this->outputQuality = $this->castOutputQuality($quality);
 
         return $this;
     }

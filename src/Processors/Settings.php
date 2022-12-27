@@ -62,6 +62,10 @@ class Settings extends Processor
             ->setConfigName($configName)
             ->setPath($this->properties->path)
             ->setDevice($this->properties->device)
+            ->setOutput(
+                $this->getParam($items, 'reqBody.output_format', $this->properties->outputFormat),
+                $this->getParam($items, 'reqBody.output_quality', $this->properties->outputQuality)
+            )
             ->resetNumOutputs()
             ->resetShowOnlyFilteredImage()
             ->resetStreamImageProgress()
@@ -94,5 +98,10 @@ class Settings extends Processor
     protected function getPath(): string
     {
         return $this->properties->path;
+    }
+
+    protected function getParam(array $items, string $key, mixed $default): mixed
+    {
+        return Arr::get($items, $key, $default);
     }
 }

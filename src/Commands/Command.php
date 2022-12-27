@@ -86,6 +86,18 @@ abstract class Command extends BaseCommand
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'Seed ID of an early generated image.'
+            )
+            ->addOption(
+                Option::OUTPUT_FORMAT(),
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Sets the file export format: jpeg or png. By default, jpeg.'
+            )
+            ->addOption(
+                Option::OUTPUT_QUALITY(),
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Specifies the percentage quality of the output image. By default, 75.'
             );
     }
 

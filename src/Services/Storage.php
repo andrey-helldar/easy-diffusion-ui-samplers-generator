@@ -25,16 +25,16 @@ class Storage
     protected string $font = __DIR__ . '/../../resources/fonts/SourceCodePro-SemiBold.ttf';
 
     public function __construct(
-        protected Config $config = new Config(),
+        protected Config       $config = new Config(),
         protected ImageManager $image = new ImageManager()
     ) {
     }
 
     public function store(
         ImageProperties $properties,
-        array $samplers,
-        array $steps,
-        array $collection
+        array           $samplers,
+        array           $steps,
+        array           $collection
     ): void {
         $image = $this->canvas(count($samplers) + 1, count($steps) + 2);
 
@@ -136,15 +136,20 @@ class Storage
 
     protected function getPath(ImageProperties $properties, string $extension): string
     {
-        $directory = implode('/', [$properties->path, $properties->getInitiatedAt(), $properties->configName]);
-
-        $this->ensureDirectory($directory);
-
-        return $directory . '/' . $properties->useStableDiffusionModel . '__' . $properties->useVaeModel . '.' . $extension;
+        return $this->getDirectory($properties) . '/' . $properties->useStableDiffusionModel . '__' . $properties->useVaeModel . '.' . $extension;
     }
 
-    protected function ensureDirectory(string $directory): void
+    protected function getDirectory(ImageProperties $properties): string
+    {
+        return $this->ensureDirectory(
+            implode('/', [$properties->path, $properties->getInitiatedAt(), $properties->configName])
+        );
+    }
+
+    protected function ensureDirectory(string $directory): string
     {
         Directory::ensureDirectory($directory);
+
+        return $directory;
     }
 }
