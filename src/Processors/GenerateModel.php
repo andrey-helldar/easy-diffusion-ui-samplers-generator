@@ -29,6 +29,7 @@ class GenerateModel extends Processor
             foreach ($samplers as $sampler) {
                 foreach ($steps as $step) {
                     $properties->sampler           = $sampler;
+                    $properties->samplerName       = $sampler;
                     $properties->numInferenceSteps = $step;
                     $properties->useVaeModel       = $vae;
 

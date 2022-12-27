@@ -37,6 +37,8 @@ class ImageProperties extends DataTransferObject
 
     public string $sampler = 'euler_a';
 
+    public string $samplerName = 'euler_a';
+
     public string $saveToDiskPath = '';
 
     public ?int $seed = null;
@@ -104,7 +106,7 @@ class ImageProperties extends DataTransferObject
             'tags'            => $this->activeTags,
             'model'           => $this->useStableDiffusionModel,
             'vae'             => $this->getVaeModel(),
-            'sampler'         => $this->sampler,
+            'sampler'         => $this->samplerName,
             'guidance_scale'  => $this->guidanceScale,
             'face_correction' => $this->getFaceCorrection(),
             'seed'            => $this->seed,
@@ -131,7 +133,7 @@ class ImageProperties extends DataTransferObject
                 'num_inference_steps'        => $this->numInferenceSteps,
                 'guidance_scale'             => $this->guidanceScale,
                 'use_face_correction'        => $this->useFaceCorrection,
-                'sampler'                    => $this->sampler,
+                'sampler'                    => $this->samplerName,
                 'use_stable_diffusion_model' => $this->useStableDiffusionModel,
                 'use_vae_model'              => $this->useVaeModel,
                 'use_hypernetwork_model'     => '',
