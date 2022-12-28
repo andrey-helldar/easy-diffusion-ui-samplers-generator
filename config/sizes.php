@@ -22,7 +22,7 @@ return [
      *
      *   For cell size 256:
      *     header: 28
-     *     parameters: 12
+     *     parameters: 10
      */
 
     'font' => [
