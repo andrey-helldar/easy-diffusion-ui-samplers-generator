@@ -18,4 +18,9 @@ trait HasSystemInfo
     {
         return SystemInfo::make()->device();
     }
+
+    protected function samplers(): array
+    {
+        return SystemInfo::make()->samplers();
+    }
 }

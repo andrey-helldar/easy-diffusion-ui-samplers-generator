@@ -66,11 +66,6 @@ class GenerateModel extends Processor
             ->toArray();
     }
 
-    protected function samplers(): array
-    {
-        return Arr::sort($this->config->get('samplers'));
-    }
-
     protected function steps(): array
     {
         return Arr::sort($this->config->get('steps'));

@@ -31,9 +31,9 @@ composer install
 
 ## Configuration
 
-The project has few static settings - these are the names of the samplers, the number of steps for generating images and cell size.
+The project has few static settings - these are the number of steps for generating images and sizes.
 
-Configuration files are located in the [`config`](config) folder.
+Configuration files are located in the [config](config) folder.
 
 ## Usage
 
