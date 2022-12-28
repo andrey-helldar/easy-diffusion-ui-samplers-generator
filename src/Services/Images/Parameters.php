@@ -33,8 +33,12 @@ class Parameters extends Base
 
     protected function getContent(): string
     {
-        return Arr::of($this->properties->toImage())
-            ->map(fn (mixed $value, string $key) => $key . ': ' . $this->resolveValue($value))
+        $parameters = $this->properties->toImage();
+
+        $length = Arr::longestStringLength(array_keys($parameters));
+
+        return Arr::of($parameters)
+            ->map(fn (mixed $value, string $key) => str_pad($key . ': ', $length + 2, '.') . ' ' . $this->resolveValue($value))
             ->implode(PHP_EOL)
             ->toString();
     }
