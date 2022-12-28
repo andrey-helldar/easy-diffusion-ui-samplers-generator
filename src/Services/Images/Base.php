@@ -6,6 +6,7 @@ namespace StableDiffusionUI\SamplersGenerator\Services\Images;
 
 use Closure;
 use DragonCode\Support\Concerns\Makeable;
+use DragonCode\Support\Facades\Helpers\Arr;
 use Intervention\Image\AbstractFont;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
@@ -27,19 +28,21 @@ abstract class Base
 
     protected string $fontColor = '#292929';
 
+    protected int $fontSize = 68;
+
     protected string $textAlign = 'center';
 
     protected string $textValign = 'center';
 
     protected ?string $text = null;
 
-    abstract public function get(): Image;
-
     public function __construct(
-        protected Config $config = new Config(),
+        protected Config       $config = new Config(),
         protected ImageManager $image = new ImageManager()
     ) {
     }
+
+    abstract public function get(): Image;
 
     public function columns(int $columns): self
     {
@@ -94,18 +97,29 @@ abstract class Base
         return $this->rows * $this->getCellSize();
     }
 
-    protected function getFontSize(): int
-    {
-        return $this->config->get('sizes.font.header', 72);
-    }
-
     protected function font(): Closure
     {
-        return fn (AbstractFont $font) => $font
-            ->file($this->font)
-            ->size($this->getFontSize())
-            ->color($this->fontColor)
-            ->align($this->textAlign)
-            ->valign($this->textValign);
+        return function (AbstractFont $font) {
+            do {
+                $font
+                    ->file($this->font)
+                    ->size($this->fontSize)
+                    ->color($this->fontColor)
+                    ->align($this->textAlign)
+                    ->valign($this->textValign);
+
+                $width = Arr::get($font->getBoxSize(), 'width');
+
+                $this->fontSize -= ($this->fontSize > 14) ? 2 : 1;
+            }
+            while ($this->fontSizeIsActually($width));
+
+            return $font;
+        };
+    }
+
+    protected function fontSizeIsActually(int $width): bool
+    {
+        return $width > ($this->getWidth() - 20) && $this->fontSize >= 8;
     }
 }
