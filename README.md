@@ -257,7 +257,6 @@ A: For various purposes, I use the following models:
         * https://civitai.com/models/5/elden-ring-style (version: 3)
         * https://civitai.com/models/1377/sidon-architectural-model (version: 1)
     * https://rentry.org/sdmodels
-      * https://huggingface.co/stabilityai/stable-diffusion-2-depth
       * https://huggingface.co/stabilityai/stable-diffusion-2
 * VAE
   * https://huggingface.co/stabilityai/sd-vae-ft-ema-original/resolve/main/vae-ft-ema-560000-ema-pruned.ckpt
