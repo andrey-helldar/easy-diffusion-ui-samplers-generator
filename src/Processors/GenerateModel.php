@@ -73,9 +73,13 @@ class GenerateModel extends Processor
 
     protected function progressBar(int ...$counts): ProgressBar
     {
-        return $this->output->createProgressBar(
+        $bar = $this->output->createProgressBar(
             $this->progressBarSteps($counts)
         );
+
+        $bar->setFormat(ProgressBar::FORMAT_VERY_VERBOSE);
+
+        return $bar;
     }
 
     protected function progressBarSteps(array $counts): int
