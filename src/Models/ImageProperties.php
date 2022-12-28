@@ -106,7 +106,6 @@ class ImageProperties extends DataTransferObject
             'tags'            => $this->activeTags,
             'model'           => $this->useStableDiffusionModel,
             'vae'             => $this->getVaeModel(),
-            'sampler'         => $this->samplerName,
             'guidance_scale'  => $this->guidanceScale,
             'face_correction' => $this->getFaceCorrection(),
             'seed'            => $this->seed,
@@ -124,7 +123,7 @@ class ImageProperties extends DataTransferObject
             'seed'            => $this->seed,
 
             'reqBody' => [
-                'prompt'                     => $this->prompt,
+                'prompt'                     => $this->originalPrompt,
                 'negative_prompt'            => $this->negativePrompt,
                 'active_tags'                => $this->activeTags,
                 'width'                      => $this->width,
