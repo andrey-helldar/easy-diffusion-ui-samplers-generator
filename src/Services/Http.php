@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace StableDiffusionUI\SamplersGenerator\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class Http
 {
@@ -27,11 +28,19 @@ class Http
 
     protected function request(string $method, string $uri, array $data = []): array
     {
-        $response = $this->client->request($method, $this->url($uri), [
-            'json' => $data,
-        ]);
+        try {
+            $response = $this->client->request($method, $this->url($uri), [
+                'json' => $data,
+            ]);
 
-        return json_decode($response->getBody()->getContents(), true) ?: [];
+            return json_decode($response->getBody()->getContents(), true) ?: [];
+        }
+        catch (RequestException $e) {
+            return match ($e->getResponse()->getStatusCode()) {
+                425     => [],
+                default => throw $e
+            };
+        }
     }
 
     protected function url(string $uri): string
