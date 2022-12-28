@@ -16,6 +16,8 @@ enum Size: int
     use InvokableCases;
 
     case SMALL = 128;
+
     case MEDIUM = 256;
+
     case BIG = 512;
 }

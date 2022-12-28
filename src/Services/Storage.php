@@ -25,16 +25,16 @@ class Storage
     protected string $font = __DIR__ . '/../../resources/fonts/SourceCodePro-SemiBold.ttf';
 
     public function __construct(
-        protected Config       $config = new Config(),
+        protected Config $config = new Config(),
         protected ImageManager $image = new ImageManager()
     ) {
     }
 
     public function store(
         ImageProperties $properties,
-        array           $samplers,
-        array           $steps,
-        array           $collection
+        array $samplers,
+        array $steps,
+        array $collection
     ): void {
         $image = $this->canvas(count($samplers) + 1, count($steps) + 2);
 
