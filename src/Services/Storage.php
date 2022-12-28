@@ -25,16 +25,16 @@ class Storage
     protected string $font = __DIR__ . '/../../resources/fonts/SourceCodePro-SemiBold.ttf';
 
     public function __construct(
-        protected Config $config = new Config(),
+        protected Config       $config = new Config(),
         protected ImageManager $image = new ImageManager()
     ) {
     }
 
     public function store(
         ImageProperties $properties,
-        array $samplers,
-        array $steps,
-        array $collection
+        array           $samplers,
+        array           $steps,
+        array           $collection
     ): void {
         $image = $this->canvas(count($samplers) + 1, count($steps) + 2);
 
@@ -73,33 +73,33 @@ class Storage
 
     protected function setHeaders(Image &$image, ImageProperties $properties, array $samplers, array $steps): void
     {
-        $this->setModelName($image, $properties, count($samplers) + 1);
-        $this->setVae($image, $properties, count($samplers) + 1);
+        $this->printModelName($image, $properties, count($samplers) + 1);
+        $this->printParameters($image, $properties, count($samplers) + 1);
 
-        $this->setSamplers($image, $samplers);
-        $this->setSteps($image, $steps);
+        $this->printSamplers($image, $samplers);
+        $this->printSteps($image, $steps);
     }
 
-    protected function setModelName(Image &$image, ImageProperties $properties, int $columns): void
+    protected function printModelName(Image &$image, ImageProperties $properties, int $columns): void
     {
         $data = Header::make()->columns($columns)->text('Model: ' . $properties->useStableDiffusionModel)->get();
 
         $this->insert($image, 0, 0, $data);
     }
 
-    protected function setVae(Image &$image, ImageProperties $properties, int $columns): void
+    protected function printParameters(Image &$image, ImageProperties $properties, int $columns): void
     {
         $data = Parameters::make()->columns($columns)->properties($properties)->get();
 
         $this->insert($image, 0, 0.5, $data);
     }
 
-    protected function setSamplers(Image &$image, array $samplers): void
+    protected function printSamplers(Image &$image, array $samplers): void
     {
         $this->setHeader($image, $samplers, fn (int $index) => $index + 1, fn () => 1);
     }
 
-    protected function setSteps(Image &$image, array $steps): void
+    protected function printSteps(Image &$image, array $steps): void
     {
         $this->setHeader($image, $steps, fn ($i) => 0, fn (int $index) => $index + 2, 'Step');
     }

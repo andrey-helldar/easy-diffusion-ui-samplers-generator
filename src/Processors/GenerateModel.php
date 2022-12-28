@@ -16,27 +16,38 @@ class GenerateModel extends Processor
     {
         $samplers = $this->samplers();
         $steps    = $this->steps();
+        $vae      = $this->vae();
 
-        $bar = $this->progressBar(count($samplers), count($steps), count($this->vae()));
+        $this->eachVae($samplers, $steps, $vae);
+    }
 
-        $this->process($this->properties, $samplers, $steps, $bar);
+    protected function eachVae(array $samplers, array $steps, array $vaes): void
+    {
+        foreach ($vaes as $vae) {
+            $this->forVae($samplers, $steps, $vae);
+        }
+    }
+
+    protected function forVae(array $samplers, array $steps, string $vae): void
+    {
+        $bar = $this->progressBar(count($samplers), count($steps));
+
+        $this->process($this->properties, $samplers, $steps, $vae, $bar);
         $this->store($samplers, $steps);
     }
 
-    protected function process(ImageProperties $properties, array $samplers, array $steps, ProgressBar $bar): void
+    protected function process(ImageProperties $properties, array $samplers, array $steps, string $vae, ProgressBar $bar): void
     {
-        foreach ($this->vae() as $vae) {
-            foreach ($samplers as $sampler) {
-                foreach ($steps as $step) {
-                    $properties->sampler           = $sampler;
-                    $properties->samplerName       = $sampler;
-                    $properties->numInferenceSteps = $step;
-                    $properties->useVaeModel       = $vae;
+        foreach ($samplers as $sampler) {
+            foreach ($steps as $step) {
+                $properties->sampler           = $sampler;
+                $properties->samplerName       = $sampler;
+                $properties->numInferenceSteps = $step;
+                $properties->useVaeModel       = $vae;
 
-                    $this->collection[$sampler][$step] = $this->generate($properties);
+                $this->collection[$sampler][$step] = $this->generate($properties);
 
-                    $bar->advance();
-                }
+                $bar->advance();
             }
         }
 
