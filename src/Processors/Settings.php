@@ -56,6 +56,9 @@ class Settings extends Processor
 
     protected function createProperties(array $items, int $sessionId, string $configName): DataTransferObject|ImageProperties
     {
+        dd(
+            ImageProperties::fromArray($items)->negativePrompt
+        );
         return ImageProperties::fromArray($items)
             ->setSize($this->getCellSize())
             ->setSessionId($sessionId)

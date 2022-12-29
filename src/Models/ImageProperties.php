@@ -77,6 +77,7 @@ class ImageProperties extends DataTransferObject
 
     protected $map = [
         'reqBody.prompt'                     => 'originalPrompt',
+        'reqBody.negative_prompt'            => 'negativePrompt',
         'reqBody.active_tags'                => 'activeTags',
         'reqBody.guidance_scale'             => 'guidanceScale',
         'reqBody.use_face_correction'        => 'useFaceCorrection',
