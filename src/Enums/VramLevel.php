@@ -16,6 +16,8 @@ enum VramLevel: string
     use InvokableCases;
 
     case HIGH = 'high';
+
     case LOW = 'low';
+
     case BALANCED = 'balanced';
 }
