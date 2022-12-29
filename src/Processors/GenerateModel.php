@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace StableDiffusionUI\SamplersGenerator\Processors;
 
 use DragonCode\Support\Facades\Helpers\Arr;
+use StableDiffusionUI\SamplersGenerator\Enums\VramLevel;
 use StableDiffusionUI\SamplersGenerator\Models\ImageProperties;
 use Symfony\Component\Console\Helper\ProgressBar;
 
@@ -32,11 +33,11 @@ class GenerateModel extends Processor
     {
         $bar = $this->progressBar(count($samplers), count($steps));
 
-        $this->process($this->properties, $samplers, $steps, $vae, $bar);
+        $this->process($this->properties, $samplers, $steps, $vae, $this->vramLevel(), $bar);
         $this->store($samplers, $steps);
     }
 
-    protected function process(ImageProperties $properties, array $samplers, array $steps, string $vae, ProgressBar $bar): void
+    protected function process(ImageProperties $properties, array $samplers, array $steps, string $vae, VramLevel $vramLevel, ProgressBar $bar): void
     {
         foreach ($samplers as $sampler) {
             foreach ($steps as $step) {
@@ -44,6 +45,7 @@ class GenerateModel extends Processor
                 $properties->samplerName       = $sampler;
                 $properties->numInferenceSteps = $step;
                 $properties->useVaeModel       = $vae;
+                $properties->vramUsageLevel    = $vramLevel->value;
 
                 $this->collection[$sampler][$step] = $this->generate($properties);
 
@@ -80,6 +82,11 @@ class GenerateModel extends Processor
     protected function steps(): array
     {
         return Arr::sort($this->config->get('steps'));
+    }
+
+    protected function vramLevel(): VramLevel
+    {
+        return $this->config->get('vram.usage_level', VramLevel::BALANCED);
     }
 
     protected function progressBar(int ...$counts): ProgressBar

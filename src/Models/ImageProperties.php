@@ -73,6 +73,8 @@ class ImageProperties extends DataTransferObject
 
     public bool $singleModel = false;
 
+    public ?string $vramUsageLevel = null;
+
     protected $map = [
         'reqBody.prompt'                     => 'originalPrompt',
         'reqBody.active_tags'                => 'activeTags',
@@ -82,6 +84,7 @@ class ImageProperties extends DataTransferObject
         'reqBody.output_quality'             => 'outputQuality',
         'reqBody.use_stable_diffusion_model' => 'useStableDiffusionModel',
         'reqBody.use_vae_model'              => 'useVaeModel',
+        'reqBody.vram_usage_level'           => 'vramUsageLevel',
     ];
 
     public function __construct(array $items = [])
@@ -142,6 +145,7 @@ class ImageProperties extends DataTransferObject
                 'show_only_filtered_image'   => true,
                 'output_format'              => $this->outputFormat,
                 'output_quality'             => $this->outputQuality,
+                'vram_usage_level'           => $this->vramUsageLevel,
             ],
         ], JSON_UNESCAPED_UNICODE ^ JSON_PRETTY_PRINT);
     }
