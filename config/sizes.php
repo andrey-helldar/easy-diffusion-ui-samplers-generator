@@ -10,5 +10,5 @@ return [
      * This option sets both the width and height of the generated image.
      */
 
-    'cell' => Size::BIG(),
+    'cell' => Size::MEDIUM,
 ];

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace StableDiffusionUI\SamplersGenerator\Concerns;
 
+use StableDiffusionUI\SamplersGenerator\Enums\Size;
+
 trait HasSizes
 {
     protected ?int $cellSize = null;
@@ -14,6 +16,6 @@ trait HasSizes
             return $this->cellSize;
         }
 
-        return $this->cellSize = (int) $this->config->get('sizes.cell', 256);
+        return $this->cellSize = $this->config->get('sizes.cell', Size::MEDIUM)->value;
     }
 }
