@@ -89,7 +89,7 @@ class Settings extends Processor
             $this->getPath(),
             fn (string $filename) => $this->isJsonFile($filename) && $this->isValid($filename)
         );
-        
+
         return Arr::sort($files);
     }
 
