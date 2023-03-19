@@ -85,10 +85,12 @@ class Settings extends Processor
 
     protected function files(): array
     {
-        return File::names(
+        $files = File::names(
             $this->getPath(),
             fn (string $filename) => $this->isJsonFile($filename) && $this->isValid($filename)
         );
+        
+        return Arr::sort($files);
     }
 
     protected function isJsonFile(string $path): bool
