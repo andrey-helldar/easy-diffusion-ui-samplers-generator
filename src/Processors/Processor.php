@@ -15,6 +15,7 @@ use StableDiffusionUI\SamplersGenerator\Services\Storage;
 abstract class Processor
 {
     use HasSizes;
+
     use HasSystemInfo;
 
     protected bool $showPathInfo = true;

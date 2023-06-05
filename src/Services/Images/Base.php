@@ -16,6 +16,7 @@ use StableDiffusionUI\SamplersGenerator\Services\Config;
 abstract class Base
 {
     use HasSizes;
+
     use Makeable;
 
     protected int $columns = 1;
