@@ -4,7 +4,7 @@
 
 ## Installation
 
-First you need to download and run [Stable Diffusion UI](https://github.com/cmdr2/stable-diffusion-ui).
+First you need to download and run [Easy Diffusion](https://github.com/easydiffusion/easydiffusion).
 
 Next, make sure you have [Composer](https://getcomposer.org), [PHP 8.1](https://www.php.net) or higher
 and [Git](https://git-scm.com/downloads) installed on your computer.
