@@ -1,4 +1,4 @@
-# Stable Diffusion UI: Samplers Generator
+# Easy Diffusion UI: Samplers Generator
 
 ![andrey helldar SD: samplers generator](https://preview.dragon-code.pro/andrey-helldar/samplers-generator.svg?mode=dark)
 
