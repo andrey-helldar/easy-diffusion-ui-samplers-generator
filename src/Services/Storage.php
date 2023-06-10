@@ -27,8 +27,7 @@ class Storage
     public function __construct(
         protected Config $config = new Config(),
         protected ImageManager $image = new ImageManager()
-    ) {
-    }
+    ) {}
 
     public function store(
         ImageProperties $properties,

@@ -22,11 +22,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 abstract class Command extends BaseCommand
 {
     use HasOptions;
-
     use HasSizes;
-
     use HasSystemInfo;
-
     use ValidateOptions;
 
     protected InputInterface $input;

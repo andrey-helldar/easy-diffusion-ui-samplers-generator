@@ -17,8 +17,7 @@ class SystemInfo
 
     public function __construct(
         protected Http $http = new Http()
-    ) {
-    }
+    ) {}
 
     public function models(): Neurals
     {

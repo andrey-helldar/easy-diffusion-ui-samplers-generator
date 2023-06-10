@@ -26,8 +26,7 @@ class Output
     public function __construct(
         protected InputInterface $input,
         protected SymfonyStyle $output
-    ) {
-    }
+    ) {}
 
     public function info(string $message): void
     {

@@ -11,8 +11,7 @@ class ImageGenerator
 {
     public function __construct(
         protected Http $http = new Http()
-    ) {
-    }
+    ) {}
 
     public function generate(ImageProperties $properties): string
     {

@@ -15,7 +15,6 @@ use StableDiffusionUI\SamplersGenerator\Services\Storage;
 abstract class Processor
 {
     use HasSizes;
-
     use HasSystemInfo;
 
     protected bool $showPathInfo = true;
@@ -27,7 +26,8 @@ abstract class Processor
         protected ImageProperties $properties,
         protected Config $config = new Config(),
         protected ImageGenerator $image = new ImageGenerator(),
-        protected Storage $filesystem = new Storage()
+        protected Storage $filesystem = new Storage(
+        )
     ) {
         $this->showPathInfo = $this->properties->showPathInfo;
     }
@@ -52,7 +52,7 @@ abstract class Processor
         return new $processor($this->output, $properties, $this->config, $this->image, $this->filesystem);
     }
 
-    protected function getRealPath(): string|bool
+    protected function getRealPath(): bool|string
     {
         return realpath($this->properties->path . '/' . $this->properties->getInitiatedAt());
     }

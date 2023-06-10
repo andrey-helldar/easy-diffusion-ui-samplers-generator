@@ -293,7 +293,7 @@ class ImageProperties extends DataTransferObject
         return $this->useVaeModel ?: 'None';
     }
 
-    protected function getFaceCorrection(): string|bool
+    protected function getFaceCorrection(): bool|string
     {
         return $this->useFaceCorrection ? 'GFPGANv1.3' : false;
     }

@@ -16,8 +16,7 @@ class Parser
 
     public function __construct(
         protected string $filename
-    ) {
-    }
+    ) {}
 
     public function getSelect(string $elementId): array
     {

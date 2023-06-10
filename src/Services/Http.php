@@ -13,8 +13,7 @@ class Http
 
     public function __construct(
         protected Client $client = new Client()
-    ) {
-    }
+    ) {}
 
     public function get(string $uri): array
     {

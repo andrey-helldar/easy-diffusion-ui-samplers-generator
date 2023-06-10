@@ -17,13 +17,13 @@ class SettingsSchema
     use Makeable;
 
     protected array $rules = [
-        'seed'                        => ['required', 'int'],
+        'seed' => ['required', 'int'],
 
-        'reqBody'                     => ['required', 'array'],
-        'reqBody.prompt'              => ['required', 'string'],
-        'reqBody.negative_prompt'     => ['required', 'string'],
+        'reqBody'                 => ['required', 'array'],
+        'reqBody.prompt'          => ['required', 'string'],
+        'reqBody.negative_prompt' => ['required', 'string'],
 
-        'reqBody.active_tags'         => ['required', 'array'],
+        'reqBody.active_tags' => ['required', 'array'],
 
         'reqBody.guidance_scale'      => ['required', 'float', 'min:1'],
         'reqBody.use_face_correction' => ['bool'],

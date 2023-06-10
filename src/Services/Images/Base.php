@@ -16,7 +16,6 @@ use StableDiffusionUI\SamplersGenerator\Services\Config;
 abstract class Base
 {
     use HasSizes;
-
     use Makeable;
 
     protected int $columns = 1;
@@ -42,8 +41,7 @@ abstract class Base
     public function __construct(
         protected Config $config = new Config(),
         protected ImageManager $image = new ImageManager()
-    ) {
-    }
+    ) {}
 
     public function columns(int $columns): self
     {
