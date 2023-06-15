@@ -12,19 +12,19 @@ and [Git](https://git-scm.com/downloads) installed on your computer.
 Next, you may create a new `Samplers Generator` project via the Composer `create-project` command:
 
 ```bash
-composer create-project andrey-helldar/stable-diffusion-ui-samplers-generator stable-diffusion-ui-samplers-generator
+composer create-project andrey-helldar/easy-diffusion-ui-samplers-generator easy-diffusion-ui-samplers-generator
 ```
 
 Or you can download this repository:
 
 ```bash
-git clone git@github.com:andrey-helldar/stable-diffusion-ui-samplers-generator.git
+git clone git@github.com:andrey-helldar/easy-diffusion-ui-samplers-generator.git
 ```
 
 Next, go to the project folder and install the dependencies:
 
 ```bash
-cd ./stable-diffusion-ui-samplers-generator
+cd ./easy-diffusion-ui-samplers-generator
 
 composer install
 ```
