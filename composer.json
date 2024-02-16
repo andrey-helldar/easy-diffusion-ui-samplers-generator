@@ -64,8 +64,8 @@
     ],
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true,
             "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
             "friendsofphp/php-cs-fixer": true,
             "symfony/thanks": true
         },
